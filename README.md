@@ -13,6 +13,7 @@ How to install/use?
 ### Chrome/Chromium
 1. Coming soon!
 
-### Issues
+Issues
+----------
 If the tool doesn't work, try to use Private mode/Incognito
 Other situations should be reported in [issues](../../issues) (game updates are fine there too)
