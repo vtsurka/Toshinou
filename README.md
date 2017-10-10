@@ -9,6 +9,11 @@ How to install/use?
 1. Install the addon through about:debugging panel.
 2. Use any web proxy to replace the main.swf and preloader.swf
 3. Enjoy
----
-If the tool isn't working, try to use Private mode/Incognito
-Other situations should be reported in [issues](../issues) (game updates are fine there too)
+
+### Chrome/Chromium
+1. Coming soon!
+
+Issues
+----------
+If the tool doesn't work, try to use Private mode/Incognito
+Other situations should be reported in [issues](../../issues) (game updates are fine there too)
