@@ -61,6 +61,14 @@ class Minimap {
     this.layer.draw();
   }
 
+  removeBox(hash) {
+    if (hash in this.boxes) {
+      this.boxes[hash].destroy();
+      delete this.boxes[hash];
+      this.layer.draw();
+    }
+  }
+
   setHeroPos(x, y) {
     var xp = x / 70;
     var yp = y / 70;

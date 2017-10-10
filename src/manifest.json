@@ -19,9 +19,12 @@
         "js/windows/Minimap.js",
         "js/windows/AttackWindow.js",
         "js/objects/Box.js",
-        "js/handlers/BoxInit.js",
+        "js/handlers/BoxInitHandler.js",
         "js/handlers/HandlersManager.js",
-        "js/handlers/ShipAttack.js",
+        "js/handlers/ShipAttackHandler.js",
+        "js/handlers/ShipCreateHandler.js",
+        "js/handlers/HeroPositionUpdateHandler.js",
+        "js/handlers/AssetRemovedHandler.js",
         "js/worker.js"
       ]
     }

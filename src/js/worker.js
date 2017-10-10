@@ -1,9 +1,6 @@
 /*
 Created by Freshek on 07.10.2017
 */
-
-console.log("[jCheat:JS] Welcome from the JS side!");
-
 window.minimap = new Minimap();
 window.minimap.createWindow();
 
@@ -17,19 +14,10 @@ var userIdPttrn = /userID=([0-9]+)/g;
 var flashVars = document.querySelectorAll('[name="flashvars"]')[0].getAttribute("value");
 window.userId = userIdPttrn.exec(flashVars)[1];
 
-HandlersManager.register("boxInit", new BoxInit());
-HandlersManager.register("shipAttack", new ShipAttack());
-
-document.addEventListener("shipCreate", function (e) {
-  var shipCreateCmd = JSON.parse(e.detail);
-  window.ships[shipCreateCmd.userId] = shipCreateCmd.userName;
-  console.log(ships);
-}, false);
-
-document.addEventListener("updateHeroPos", function (e) {
-  var positions = e.detail.split("|");
-  window.minimap.setHeroPos(parseInt(positions[0]), parseInt(positions[1]));
-}, false);
-
+HandlersManager.register("boxInit", new BoxInitHandler());
+HandlersManager.register("shipAttack", new ShipAttackHandler());
+HandlersManager.register("shipCreate", new ShipCreateHandler());
+HandlersManager.register("updateHeroPos", new HeroPositionUpdateHandler());
+HandlersManager.register("assetRemoved", new AssetRemovedHandler());
 
 Injector.injectScriptFromResource("res/injectables/HeroPositionUpdater.js");
