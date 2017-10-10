@@ -2,7 +2,9 @@
 Created by Freshek on 07.10.2017
 */
 
-$("#preloader").attr("wmode", "opaque");
+var preloader = $("#preloader").attr("wmode", "opaque");
+$("#preloader").remove();
+preloader.appendTo($("#container"));
 
 window.minimap = new Minimap();
 window.minimap.createWindow();
