@@ -1,6 +1,9 @@
 /*
 Created by Freshek on 07.10.2017
 */
+
+$("#preloader").attr("wmode", "opaque");
+
 window.minimap = new Minimap();
 window.minimap.createWindow();
 
