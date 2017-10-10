@@ -1,0 +1,34 @@
+{
+  "manifest_version": 2,
+  "name": "Toshinou",
+  "version": "1.0",
+
+  "description": "Cheat & Tool for DarkOrbit",
+
+  "content_scripts": [
+    {
+      "matches": ["*://*.darkorbit.com/indexInternal.es?action=internalMapRevolution"],
+      "js": [
+        "js/libs/jquery-3.2.1.min.js",
+        "js/libs/jquery-ui.min.js",
+        "js/libs/konva.min.js",
+        "js/libs/swfobject.js",
+        "js/utils/ResourcesManager.js",
+        "js/utils/Injector.js",
+        "js/WindowFactory.js",
+        "js/windows/Minimap.js",
+        "js/windows/AttackWindow.js",
+        "js/objects/Box.js",
+        "js/handlers/BoxInit.js",
+        "js/handlers/HandlersManager.js",
+        "js/handlers/ShipAttack.js",
+        "js/worker.js"
+      ]
+    }
+  ],
+
+  "web_accessible_resources": [
+    "res/injectables/*",
+    "res/swf/*"
+  ]
+}
