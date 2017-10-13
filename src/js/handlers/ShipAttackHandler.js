@@ -7,11 +7,12 @@ class ShipAttackHandler {
     this._handler = function(e) {
       var shipAttackCmd = JSON.parse(e.detail);
 
+      console.log(shipAttackCmd);
       // TODO: Make this cleaner – create a Ship object
-      if (shipAttackCmd["_-r3w"] == window.userId) { //attacker id
-        window.attackWindow.hp(shipAttackCmd["_-t4t"]);
-        window.attackWindow.shd(shipAttackCmd["_-k4G"]);
-        window.attackWindow.targetName(window.ships[shipAttackCmd["_-O1K"]]);
+      if (shipAttackCmd[Variables.attackerId] == window.userId) { //attacker id
+        window.attackWindow.hp(shipAttackCmd[Variables.attackHp]);
+        window.attackWindow.shd(shipAttackCmd[Variables.attackShd]);
+        window.attackWindow.targetName(window.ships[shipAttackCmd[Variables.attackedId]]);
       }
     }
   }

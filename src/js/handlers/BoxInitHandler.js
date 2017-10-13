@@ -7,7 +7,7 @@ class BoxInitHandler {
     this._handler = function(e) {
       var box = JSON.parse(e.detail);
 
-      var pBox = new Box(box.x, box.y, box.hash, box["_-g2v"]);
+      var pBox = new Box(box.x, box.y, box.hash, box[Variables.boxType]);
       window.boxes[box.hash] = pBox;
       window.minimap.addBox(pBox);
     };
