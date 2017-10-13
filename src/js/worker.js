@@ -24,5 +24,8 @@ HandlersManager.register("shipAttack", new ShipAttackHandler());
 HandlersManager.register("shipCreate", new ShipCreateHandler());
 HandlersManager.register("updateHeroPos", new HeroPositionUpdateHandler());
 HandlersManager.register("assetRemoved", new AssetRemovedHandler());
+HandlersManager.register("heroInit", new HeroInitHandler(init));
 
-Injector.injectScriptFromResource("res/injectables/HeroPositionUpdater.js");
+function init() {
+  Injector.injectScriptFromResource("res/injectables/HeroPositionUpdater.js");
+}
