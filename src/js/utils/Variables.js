@@ -4,23 +4,23 @@ Thanks for the idea to iNk
 */
 
 class Variables {
-  get boxType() {
+  static get boxType() {
     return "_-21B";
   }
 
-  get attackerId() {
-    return "_-q4s";
+  static get attackerId() {
+    return "_-S3n";
   }
 
-  get attackHp() {
+  static get attackHp() {
     return "_-y2j";
   }
 
-  get attackShd() {
+  static get attackShd() {
     return "_-Z3X";
   }
 
-  get attackedId() {
-    return "_-S3n";
+  static get attackedId() {
+    return "_-q4s";
   }
 }
