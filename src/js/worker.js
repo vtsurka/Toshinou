@@ -19,13 +19,47 @@ window.attackWindow.createWindow();
 window.ships = [];
 window.boxes = [];
 
+window.targetBoxHash = null;
+
+window.movementDone = true;
+
 HandlersManager.register("boxInit", new BoxInitHandler());
 HandlersManager.register("shipAttack", new ShipAttackHandler());
 HandlersManager.register("shipCreate", new ShipCreateHandler());
 HandlersManager.register("updateHeroPos", new HeroPositionUpdateHandler());
 HandlersManager.register("assetRemoved", new AssetRemovedHandler());
 HandlersManager.register("heroInit", new HeroInitHandler(init));
+HandlersManager.register("movementDone", new MovementDoneHandler());
 
 function init() {
   Injector.injectScriptFromResource("res/injectables/HeroPositionUpdater.js");
+
+  window.setInterval(logic, 500);
+}
+
+function logic() {
+  if (window.targetBoxHash == null) {
+    var minDist = 100000;
+    var finalBox;
+    for (var property in window.boxes) {
+      var dist = window.boxes[property].distanceTo(hero.position);
+
+      if (dist < minDist) {
+        finalBox = window.boxes[property];
+        minDist = dist;
+      }
+    }
+
+    if (finalBox != null) {
+      Injector.injectScript('document.getElementById("preloader").collectBox' + finalBox.hash + '()');
+      window.targetBoxHash = finalBox.hash;
+      return;
+    }
+
+    if (window.movementDone) {
+      window.movementDone = false;
+      window.targetPosition = new Vector2D(MathUtils.random(1000, 10000), MathUtils.random(1000, 10000));
+      window.hero.move(window.targetPosition);
+    }
+  }
 }

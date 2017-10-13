@@ -2,10 +2,10 @@
 Created by Freshek on 07.10.2017
 */
 
-class Box {
+class Box extends Movable {
   constructor(x, y, hash, type) {
-    this.x = parseInt(x);
-    this.y = parseInt(y);
+    super();
+    this.position = new Vector2D(x, y);
     this.hash = hash;
     this.type = type;
   }

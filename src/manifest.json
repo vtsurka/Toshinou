@@ -16,10 +16,14 @@
         "js/utils/ResourcesManager.js",
         "js/utils/Injector.js",
         "js/utils/Variables.js",
+        "js/utils/math/Vector2D.js",
+        "js/utils/math/MathUtils.js",
         "js/WindowFactory.js",
         "js/windows/Minimap.js",
         "js/windows/AttackWindow.js",
+        "js/objects/Movable.js",
         "js/objects/Box.js",
+        "js/objects/Hero.js",
         "js/handlers/BoxInitHandler.js",
         "js/handlers/HandlersManager.js",
         "js/handlers/ShipAttackHandler.js",
@@ -27,6 +31,7 @@
         "js/handlers/HeroPositionUpdateHandler.js",
         "js/handlers/AssetRemovedHandler.js",
         "js/handlers/HeroInitHandler.js",
+        "js/handlers/MovementDoneHandler.js",
         "js/worker.js"
       ]
     }

@@ -47,8 +47,8 @@ class Minimap {
 
   addBox(box) {
     var boxRect = new Konva.Rect({
-      x: box.x / 70,
-      y: box.y / 70,
+      x: box.position.x / 70,
+      y: box.position.y / 70,
       width: 2,
       height: 2,
       fill: 'gold',

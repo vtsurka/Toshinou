@@ -7,7 +7,8 @@ class BoxInitHandler {
     this._handler = function(e) {
       var box = JSON.parse(e.detail);
 
-      console.log(box);
+      if (box.hash.length == 5)
+        return;
 
       var pBox = new Box(box.x, box.y, box.hash, box[Variables.boxType]);
       window.boxes[box.hash] = pBox;

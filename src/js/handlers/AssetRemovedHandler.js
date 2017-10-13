@@ -7,6 +7,10 @@ class AssetRemovedHandler {
     this._handler = function(e) {
       var parsedCmd = JSON.parse(e.detail);
 
+      if (parsedCmd.hash == window.targetBoxHash) {
+        window.targetBoxHash = null;
+      }
+
       if (parsedCmd.hash in window.boxes) {
         delete window.boxes[parsedCmd.hash];
       }
