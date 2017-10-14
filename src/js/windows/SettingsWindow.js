@@ -36,7 +36,6 @@ class SettingsWindow {
 
     this.moveRandomlyBox.change(function() {
       window.settings.moveRandomly = this.checked;
-      window.movementDone = true;
     })
 
     this.collectBoxesBox.appendTo(window.botSettingsWindow);
