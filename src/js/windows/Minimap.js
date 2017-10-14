@@ -40,7 +40,7 @@ class Minimap {
       var pos = self.minimap.position();
       var x = e.clientX - pos.left;
       var y = e.clientY - pos.top - 40;
-      console.log(x + "/" + y);
+      
       Injector.injectScript('document.getElementById("preloader").moveShip(' + x * 70 + ',' + y * 70 + ');');
     });
   }

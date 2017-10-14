@@ -10,11 +10,7 @@ var preloader = $("#preloader").attr("wmode", "opaque");
 $("#preloader").remove();
 preloader.appendTo($("#container"));
 
-window.minimap = new Minimap();
-window.minimap.createWindow();
-
-window.attackWindow = new AttackWindow();
-window.attackWindow.createWindow();
+window.settings = new Settings(false, false, false);
 
 window.ships = [];
 window.boxes = [];
@@ -32,6 +28,15 @@ HandlersManager.register("heroInit", new HeroInitHandler(init));
 HandlersManager.register("movementDone", new MovementDoneHandler());
 
 function init() {
+  window.minimap = new Minimap();
+  window.minimap.createWindow();
+
+  window.attackWindow = new AttackWindow();
+  window.attackWindow.createWindow();
+
+  window.settingsWindow = new SettingsWindow();
+  window.settingsWindow.createWindow();
+
   Injector.injectScriptFromResource("res/injectables/HeroPositionUpdater.js");
 
   window.setInterval(logic, 500);
@@ -45,8 +50,11 @@ function logic() {
       var dist = window.boxes[property].distanceTo(hero.position);
 
       if (dist < minDist) {
-        finalBox = window.boxes[property];
-        minDist = dist;
+        var box = window.boxes[property];
+        if ((box.type == "BONUS_BOX" && window.settings.collectBoxes) || (box.isMaterial() && window.settings.collectMaterials)) {
+          finalBox = box;
+          minDist = dist;
+        }
       }
     }
 
@@ -56,7 +64,7 @@ function logic() {
       return;
     }
 
-    if (window.movementDone) {
+    if (window.movementDone && window.settings.moveRandomly) {
       window.movementDone = false;
       window.targetPosition = new Vector2D(MathUtils.random(1000, 10000), MathUtils.random(1000, 10000));
       window.hero.move(window.targetPosition);

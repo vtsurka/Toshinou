@@ -13,4 +13,9 @@ class Box extends Movable {
   toString() {
     return JSON.parse(this);
   }
+
+  isMaterial() {
+    var type = this.type.toLowerCase();
+    return (type == "mucosum" || type == "prismatium" || type == "scrapium" || type == "boltrum");
+  }
 }

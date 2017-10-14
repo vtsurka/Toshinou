@@ -9,8 +9,6 @@ class AttackWindow {
     this.targetNameTxt = jQuery("<h4>");
     this.targetNameTxt.text("Target: -");
 
-    console.log(this.targetName);
-
     this.hpTxt = jQuery("<h4>");
     this.hpTxt.text("HP: -");
 
