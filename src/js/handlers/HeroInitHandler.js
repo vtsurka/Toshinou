@@ -10,6 +10,7 @@ class HeroInitHandler {
         window.hero = new Hero(heroJson.x, heroJson.y);
       }
       f();
+      window.initialized = true;
     }
   }
 

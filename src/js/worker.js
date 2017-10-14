@@ -11,6 +11,7 @@ $("#preloader").remove();
 preloader.appendTo($("#container"));
 
 window.settings = new Settings(false, false, false);
+window.initialized = false;
 
 window.ships = [];
 window.boxes = [];
@@ -28,6 +29,9 @@ HandlersManager.register("heroInit", new HeroInitHandler(init));
 HandlersManager.register("movementDone", new MovementDoneHandler());
 
 function init() {
+  if (window.initialized)
+    return;
+
   window.minimap = new Minimap();
   window.minimap.createWindow();
 
