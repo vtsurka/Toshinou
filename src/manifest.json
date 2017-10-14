@@ -12,7 +12,6 @@
         "js/libs/jquery-3.2.1.min.js",
         "js/libs/jquery-ui.min.js",
         "js/libs/konva.min.js",
-        "js/libs/swfobject.js",
         "js/utils/ResourcesManager.js",
         "js/utils/Injector.js",
         "js/utils/Variables.js",
