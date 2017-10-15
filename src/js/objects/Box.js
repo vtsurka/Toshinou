@@ -4,8 +4,7 @@ Created by Freshek on 07.10.2017
 
 class Box extends Movable {
   constructor(x, y, hash, type) {
-    super();
-    this.position = new Vector2D(x, y);
+    super(x, y);
     this.hash = hash;
     this.type = type;
   }

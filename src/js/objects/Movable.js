@@ -3,6 +3,10 @@ Created by Freshek on 13.10.2017
 */
 
 class Movable {
+  constructor(x, y) {
+    this.position = new Vector2D(x, y);
+  }
+
   move(x, y) {
     this.position.set(x, y);
   }
