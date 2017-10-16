@@ -70,7 +70,7 @@ function logic() {
 
     if (window.movementDone && window.settings.moveRandomly) {
       window.movementDone = false;
-      window.targetPosition = new Vector2D(MathUtils.random(1000, 10000), MathUtils.random(1000, 10000));
+      window.targetPosition = new Vector2D(MathUtils.random(100, 20732), MathUtils.random(58, 12830));
       window.hero.move(window.targetPosition);
     }
   }
