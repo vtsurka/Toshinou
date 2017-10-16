@@ -25,6 +25,7 @@
         "js/objects/Movable.js",
         "js/objects/Box.js",
         "js/objects/Hero.js",
+        "js/objects/Ship.js",
         "js/handlers/BoxInitHandler.js",
         "js/handlers/HandlersManager.js",
         "js/handlers/ShipAttackHandler.js",

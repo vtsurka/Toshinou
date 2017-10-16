@@ -10,7 +10,7 @@ class ShipAttackHandler {
       if (shipAttackCmd[Variables.attackerId] == window.userId) { //attacker id
         window.attackWindow.hp(shipAttackCmd[Variables.attackHp]);
         window.attackWindow.shd(shipAttackCmd[Variables.attackShd]);
-        window.attackWindow.targetName(window.ships[shipAttackCmd[Variables.attackedId]]);
+        window.attackWindow.targetName(window.ships[shipAttackCmd[Variables.attackedId]].name);
       }
     }
   }
