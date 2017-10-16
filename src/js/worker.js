@@ -23,6 +23,7 @@ window.movementDone = true;
 HandlersManager.register("boxInit", new BoxInitHandler());
 HandlersManager.register("shipAttack", new ShipAttackHandler());
 HandlersManager.register("shipCreate", new ShipCreateHandler());
+HandlersManager.register("shipMove", new ShipMoveHandler());
 HandlersManager.register("updateHeroPos", new HeroPositionUpdateHandler());
 HandlersManager.register("assetRemoved", new AssetRemovedHandler());
 HandlersManager.register("heroInit", new HeroInitHandler(init));

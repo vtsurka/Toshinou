@@ -34,6 +34,7 @@
         "js/handlers/AssetRemovedHandler.js",
         "js/handlers/HeroInitHandler.js",
         "js/handlers/MovementDoneHandler.js",
+        "js/handlers/ShipMoveHandler.js",
         "js/worker.js"
       ]
     }
