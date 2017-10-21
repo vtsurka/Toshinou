@@ -2,32 +2,49 @@
 Created by Freshek on 07.10.2017
 */
 
-var userIdPttrn = /userID=([0-9]+)/g;
-var flashVars = document.querySelectorAll('[name="flashvars"]')[0].getAttribute("value");
-window.userId = userIdPttrn.exec(flashVars)[1];
+$(document).ready(function() {
+  var preloader = $("#preloader").attr("wmode", "opaque");
+  $("#preloader").remove();
 
-var preloader = $("#preloader").attr("wmode", "opaque");
-$("#preloader").remove();
-preloader.appendTo($("#container"));
+  var check = SafetyChecker.check();
 
-window.settings = new Settings(false, false, false);
-window.initialized = false;
+  if (check !== true) {
+    var warning = jQuery("<div>");
+    warning.css({top: 0, left: 0, position: "absolute", width: "100%", height: "100%", backgroundColor: "gray", textAlign: "center"});
 
-window.ships = [];
-window.boxes = [];
+    jQuery("<h1>").text("The tool has detected unwanted changes in the game.").appendTo(warning);
+    jQuery("<h2>").text("Loading stopped, your account should stay safe.").appendTo(warning);
+    jQuery("<h3>").text("cause: " + check).appendTo(warning);
 
-window.targetBoxHash = null;
+    warning.appendTo("body");
+    throw new Error("Safety tests failed!");
+  }
 
-window.movementDone = true;
+  preloader.appendTo($("#container"));
 
-HandlersManager.register("boxInit", new BoxInitHandler());
-HandlersManager.register("shipAttack", new ShipAttackHandler());
-HandlersManager.register("shipCreate", new ShipCreateHandler());
-HandlersManager.register("shipMove", new ShipMoveHandler());
-HandlersManager.register("updateHeroPos", new HeroPositionUpdateHandler());
-HandlersManager.register("assetRemoved", new AssetRemovedHandler());
-HandlersManager.register("heroInit", new HeroInitHandler(init));
-HandlersManager.register("movementDone", new MovementDoneHandler());
+  var userIdPttrn = /userID=([0-9]+)/g;
+  var flashVars = document.querySelectorAll('[name="flashvars"]')[0].getAttribute("value");
+  window.userId = userIdPttrn.exec(flashVars)[1];
+
+  window.settings = new Settings(false, false, false);
+  window.initialized = false;
+
+  window.ships = [];
+  window.boxes = [];
+
+  window.targetBoxHash = null;
+
+  window.movementDone = true;
+
+  HandlersManager.register("boxInit", new BoxInitHandler());
+  HandlersManager.register("shipAttack", new ShipAttackHandler());
+  HandlersManager.register("shipCreate", new ShipCreateHandler());
+  HandlersManager.register("shipMove", new ShipMoveHandler());
+  HandlersManager.register("updateHeroPos", new HeroPositionUpdateHandler());
+  HandlersManager.register("assetRemoved", new AssetRemovedHandler());
+  HandlersManager.register("heroInit", new HeroInitHandler(init));
+  HandlersManager.register("movementDone", new MovementDoneHandler());
+});
 
 function init() {
   if (window.initialized)

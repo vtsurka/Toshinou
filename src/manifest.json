@@ -12,12 +12,16 @@
         "js/libs/jquery-3.2.1.min.js",
         "js/libs/jquery-ui.min.js",
         "js/libs/konva.min.js",
+        "js/libs/md5.min.js",
+        "js/safety/SafetyChecker.js",
+        "js/safety/JavaScriptChecker.js",
         "js/utils/ResourcesManager.js",
         "js/utils/Injector.js",
         "js/utils/Variables.js",
         "js/utils/Settings.js",
         "js/utils/math/Vector2D.js",
         "js/utils/math/MathUtils.js",
+        "js/utils/WebClient.js",
         "js/WindowFactory.js",
         "js/windows/Minimap.js",
         "js/windows/AttackWindow.js",
@@ -36,11 +40,16 @@
         "js/handlers/MovementDoneHandler.js",
         "js/handlers/ShipMoveHandler.js",
         "js/worker.js"
-      ]
+      ],
+      "run_at": "document_start"
     }
   ],
 
   "web_accessible_resources": [
     "res/injectables/*"
+  ],
+
+  "permissions": [
+    "<all_urls>"
   ]
 }
