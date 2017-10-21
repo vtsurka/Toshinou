@@ -6,7 +6,6 @@ class ShipMoveHandler {
   constructor() {
     this._handler = function(e) {
       var shipMoveCmd = JSON.parse(e.detail);
-      // console.log(shipMoveCmd);
     }
   }
 

@@ -5,22 +5,26 @@ Thanks for the idea to iNk
 
 class Variables {
   static get boxType() {
-    return "_-21B";
+    return "_-p3L";
   }
 
   static get attackerId() {
-    return "_-S3n";
+    return "_-N4w";
   }
 
   static get attackHp() {
-    return "_-y2j";
+    return "_-j4H";
   }
 
   static get attackShd() {
-    return "_-Z3X";
+    return "_-3o";
   }
 
   static get attackedId() {
-    return "_-q4s";
+    return "_-d4A";
+  }
+
+  static get moveDuration() {
+    return "_-r1U";
   }
 }
