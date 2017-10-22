@@ -12,7 +12,6 @@ class BoxInitHandler {
 
       var pBox = new Box(box.x, box.y, box.hash, box[Variables.boxType]);
       window.boxes[box.hash] = pBox;
-      window.minimap.addBox(pBox);
     };
   }
 

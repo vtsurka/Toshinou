@@ -14,7 +14,6 @@ class AssetRemovedHandler {
       if (parsedCmd.hash in window.boxes) {
         delete window.boxes[parsedCmd.hash];
       }
-      window.minimap.removeBox(parsedCmd.hash);
     }
   }
 

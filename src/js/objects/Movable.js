@@ -7,7 +7,7 @@ class Movable {
     this.position = new Vector2D(x, y);
   }
 
-  move(x, y) {
+  setPosition(x, y) {
     this.position.set(x, y);
   }
 

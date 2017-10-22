@@ -61,10 +61,12 @@ function init() {
 
   Injector.injectScriptFromResource("res/injectables/HeroPositionUpdater.js");
 
-  window.setInterval(logic, 500);
+  window.setInterval(logic, 300);
 }
 
 function logic() {
+  window.minimap.draw();
+
   if (window.targetBoxHash == null) {
     var minDist = 100000;
     var finalBox;
