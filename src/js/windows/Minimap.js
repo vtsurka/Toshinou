@@ -37,18 +37,37 @@ class Minimap {
     ct.fillStyle = "yellow";
     for (var property in window.boxes) {
       var box = window.boxes[property];
+
+      if (box == null)
+        continue;
+
       ct.fillRect(box.position.x / 70, box.position.y / 90, 2, 2);
     }
 
-    // ct.fillStyle = "red";
-    // for (var property in window.ships) {
-    //   var ship = window.ships[property];
-    //
-    //   if (ship == null)
-    //     return;
-    //
-    //   ship.update();
-    //   var pos = ship.position;
-    // }
+    for (var property in window.ships) {
+      var ship = window.ships[property];
+
+      if (ship == null)
+        continue;
+
+      ship.update();
+      var pos = ship.position;
+
+      if (ship.isNpc) {
+        ct.fillStyle = "rgb(255, 0, 245)";
+      } else if (ship.isEnemy) {
+        ct.fillStyle = "rgb(74, 0, 0)";
+      } else {
+        ct.fillStyle = "rgb(0, 125, 255)";
+      }
+
+      this._drawCircle(ct, pos.x / 70, pos.y / 90, 2);
+    }
+  }
+
+  _drawCircle(ctx, x, y, r) {
+    ctx.beginPath();
+    ctx.arc(x, y, r, 0, 2 * Math.PI, false);
+    ctx.fill();
   }
 }

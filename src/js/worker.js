@@ -44,6 +44,8 @@ $(document).ready(function() {
   HandlersManager.register("assetRemoved", new AssetRemovedHandler());
   HandlersManager.register("heroInit", new HeroInitHandler(init));
   HandlersManager.register("movementDone", new MovementDoneHandler());
+  HandlersManager.register("shipDestroyed", new ShipDestroyedHandler());
+  HandlersManager.register("shipRemoved", new ShipRemovedHandler());
 });
 
 function init() {

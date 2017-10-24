@@ -27,4 +27,8 @@ class Variables {
   static get moveDuration() {
     return "_-r1U";
   }
+
+  static get shipDestoyedId() {
+    return "_-o3S";
+  }
 }

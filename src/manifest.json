@@ -39,6 +39,8 @@
         "js/handlers/HeroInitHandler.js",
         "js/handlers/MovementDoneHandler.js",
         "js/handlers/ShipMoveHandler.js",
+        "js/handlers/ShipDestroyedHandler.js",
+        "js/handlers/ShipRemovedHandler.js",
         "js/worker.js"
       ],
       "run_at": "document_start"

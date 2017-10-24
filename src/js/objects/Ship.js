@@ -3,17 +3,23 @@ Created by Freshek on 15.10.2017
 */
 
 class Ship extends Movable {
-  constructor(x, y, id, isnpc, name) {
+  constructor(x, y, id, isnpc, name, factionId) {
     super(x, y);
     this.id = id;
     this.isNpc = isnpc;
     this.name = name;
+    this.factionId = factionId;
   }
 
   setTarget(targetX, targetY, time) {
     this.target = new Vector2D(targetX, targetY);
     this.timeToTarget = parseInt(time);
     this.lastUpdate = $.now();
+  }
+
+
+  get isEnemy() {
+    return window.hero.factionId != this.factionId;
   }
 
   update() {
@@ -24,9 +30,10 @@ class Ship extends Movable {
       return this.position;
     }
 
-    /* quick and dirty solution
+    /*
+     * quick and dirty solution
      * TODO atan2 instead of this
-    */
+     */
 
     var dx = this.target.x - this.position.x;
     var dy = this.target.y - this.position.y;

@@ -3,8 +3,10 @@ Created by Freshek on 07.10.2017
 */
 
 class Hero extends Movable {
-  constructor(x, y) {
+  constructor(x, y, factionId) {
     super(x, y);
+    this.factionId = factionId;
+    this.targetShip = null;
   }
 
   move(pos) {
