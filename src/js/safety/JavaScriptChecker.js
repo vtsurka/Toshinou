@@ -6,7 +6,7 @@ class JavaScriptChecker {
   static safetyCheck() {
     var jsHashes = {};
 
-    jsHashes["https://www.googletagmanager.com/gtm.js"] = "99a81c056ebe99e6ac4341a6414977bb";
+    jsHashes["https://www.googletagmanager.com/gtm.js"] = "58c7788958bc79d78e06a7407c2f3e1a";
     jsHashes["https://darkorbit-22.bpsecure.com/js/function.js"] = "8fd87941fb7d1b7ced05590b0e15c0f3";
     jsHashes["https://darkorbit-22.bpsecure.com/js/jQuery/jquery-1.4.4.js"] = "73a9c334c5ca71d70d092b42064f6476";
     jsHashes["https://darkorbit-22.bpsecure.com/js/jQuery/jquery.flashembed.js"] = "ed010c8f12b11c855ee9c833acdbd9c3";
@@ -33,6 +33,9 @@ class JavaScriptChecker {
         var hash = md5(script);
 
         var rSrc = this.src.substr(0, this.src.indexOf("?"));
+
+        console.log(rSrc + " → " + hash);
+        console.log(script);
 
         if (jsHashes[rSrc] != hash) {
           result = false;
