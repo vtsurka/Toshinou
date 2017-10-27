@@ -77,7 +77,7 @@ function logic() {
 
       if (dist < minDist) {
         var box = window.boxes[property];
-        if ((box.type == "BONUS_BOX" && window.settings.collectBoxes) || (box.isMaterial() && window.settings.collectMaterials)) {
+        if (((box.type == "BONUS_BOX" || box.type == "MINI_PUMPKIN") && window.settings.collectBoxes) || (box.isMaterial() && window.settings.collectMaterials)) {
           finalBox = box;
           minDist = dist;
         }
