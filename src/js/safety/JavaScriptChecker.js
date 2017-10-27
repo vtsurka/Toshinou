@@ -34,9 +34,6 @@ class JavaScriptChecker {
 
         var rSrc = this.src.substr(0, this.src.indexOf("?"));
 
-        console.log(rSrc + " → " + hash);
-        console.log(script);
-
         if (jsHashes[rSrc] != hash) {
           result = false;
           return false;
