@@ -7,10 +7,10 @@ class ShipMoveHandler {
     this._handler = function(e) {
       var shipMoveCmd = JSON.parse(e.detail);
 
-      var ship = window.ships[shipMoveCmd];
+      var ship = window.ships[shipMoveCmd.userId];
 
       if (ship != null)
-        window.ships[shipMoveCmd.userId].setTarget(shipMoveCmd.x, shipMoveCmd.y, shipMoveCmd[Variables.moveDuration]);
+        ship.setTarget(shipMoveCmd.x, shipMoveCmd.y, shipMoveCmd[Variables.moveDuration]);
     }
   }
 
