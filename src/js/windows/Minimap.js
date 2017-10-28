@@ -34,12 +34,13 @@ class Minimap {
     ct.fillStyle = 'green';
     ct.fillRect(window.hero.position.x / 70, window.hero.position.y / 90, 4, 4);
 
-    ct.fillStyle = "yellow";
     for (var property in window.boxes) {
       var box = window.boxes[property];
 
       if (box == null)
         continue;
+
+      ct.fillStyle = BoxType.getColor(box.type);
 
       ct.fillRect(box.position.x / 70, box.position.y / 90, 2, 2);
     }

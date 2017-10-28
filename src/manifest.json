@@ -22,6 +22,7 @@
         "js/utils/math/Vector2D.js",
         "js/utils/math/MathUtils.js",
         "js/utils/WebClient.js",
+        "js/utils/BoxType.js",
         "js/WindowFactory.js",
         "js/windows/Minimap.js",
         "js/windows/AttackWindow.js",

@@ -23,6 +23,9 @@ class Ship extends Movable {
   }
 
   update() {
+    if (this.target == null)
+      return;
+
     var diff = $.now() - this.lastUpdate;
 
     if (diff > this.timeToTarget) {
