@@ -1,7 +1,6 @@
 /*
 Created by Freshek on 07.10.2017
 */
-
 $(document).ready(function() {
   var preloader = $("#preloader").attr("wmode", "opaque");
   $("#preloader").remove();
@@ -58,12 +57,38 @@ function init() {
   window.attackWindow = new AttackWindow();
   window.attackWindow.createWindow();
 
-  window.settingsWindow = new SettingsWindow();
-  window.settingsWindow.createWindow();
+  window.collectingWindow = new CollectingWindow();
+  window.collectingWindow.createWindow();
+
+  window.autolockWindow = new AutolockWindow();
+  window.autolockWindow.createWindow();
 
   Injector.injectScriptFromResource("res/injectables/HeroPositionUpdater.js");
 
   window.setInterval(logic, 300);
+
+  $(document).keyup(function(e) {
+    var key = e.key;
+
+    if (key == "x" || key == "z") {
+      var maxDist = 1000;
+      var finDist = 1000000;
+      var finalShip;
+
+      for (var property in window.ships) {
+        var ship = window.ships[property];
+        var dist = ship.distanceTo(window.hero.position);
+
+        if (dist < maxDist && dist < finDist && ((ship.isNpc && window.settings.lockNpc && key == "x") || (ship.isEnemy && window.settings.lockPlayers && key == "z"))) {
+          finalShip = ship;
+          finDist = dist;
+        }
+      }
+
+      if (finalShip != null)
+        Api.lockShip(finalShip);
+    }
+  });
 }
 
 function logic() {
@@ -73,7 +98,7 @@ function logic() {
     var minDist = 100000;
     var finalBox;
     for (var property in window.boxes) {
-      var dist = window.boxes[property].distanceTo(hero.position);
+      var dist = window.boxes[property].distanceTo(window.hero.position);
 
       if (dist < minDist) {
         var box = window.boxes[property];

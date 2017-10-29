@@ -26,7 +26,8 @@
         "js/WindowFactory.js",
         "js/windows/Minimap.js",
         "js/windows/AttackWindow.js",
-        "js/windows/SettingsWindow.js",
+        "js/windows/CollectingWindow.js",
+        "js/windows/AutolockWindow.js",
         "js/objects/Movable.js",
         "js/objects/Box.js",
         "js/objects/Hero.js",
@@ -42,7 +43,8 @@
         "js/handlers/ShipMoveHandler.js",
         "js/handlers/ShipDestroyedHandler.js",
         "js/handlers/ShipRemovedHandler.js",
-        "js/worker.js"
+        "js/worker.js",
+        "js/Api.js"
       ],
       "run_at": "document_start"
     }
