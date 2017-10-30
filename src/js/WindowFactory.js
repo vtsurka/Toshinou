@@ -17,7 +17,7 @@ class WindowFactory {
     var header = jQuery("<h4/>", {
       width: "100%",
       height: "40px",
-      text: params.text != "" ? params.text : "window"
+      text: params.text != null ? params.text : "window"
     });
 
     var minimizeBtn = jQuery("<h4/>", {
