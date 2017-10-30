@@ -22,7 +22,7 @@ class Minimap {
       var x = e.clientX - pos.left;
       var y = e.clientY - pos.top - 40;
 
-      Injector.injectScript('document.getElementById("preloader").moveShip(' + x * 70 + ',' + y * 70 + ');');
+      Injector.injectScript('document.getElementById("preloader").moveShip(' + x * 70 + ',' + y * 90 + ');');
     });
   }
 
