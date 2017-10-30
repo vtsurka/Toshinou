@@ -110,15 +110,14 @@ function logic() {
     }
 
     if (finalBox != null) {
-      Injector.injectScript('document.getElementById("preloader").collectBox' + finalBox.hash + '()');
+      Api.collectBox(finalBox);
       window.targetBoxHash = finalBox.hash;
       return;
     }
 
     if (window.movementDone && window.settings.moveRandomly) {
       window.movementDone = false;
-      window.targetPosition = new Vector2D(MathUtils.random(100, 20732), MathUtils.random(58, 12830));
-      window.hero.move(window.targetPosition);
+      Api.move(MathUtils.random(100, 20732), MathUtils.random(58, 12830));
     }
   }
 }
