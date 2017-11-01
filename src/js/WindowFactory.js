@@ -28,13 +28,15 @@ class WindowFactory {
     div.css({backgroundColor: "transparent", position: "absolute"});
     div.appendTo("body");
 
-    header.css({backgroundColor: "rgba(25, 25, 25, 0.9)", top: 0, left: 0, padding: "5px", boxSizing: "border-box"});
+    var headerCol = ColorConverter.hexToRgb(window.globalSettings.headerColor);
+    header.css({backgroundColor: ColorConverter.combine(headerCol.r, headerCol.g, headerCol.b, window.globalSettings.headerOpacity), top: 0, left: 0, padding: "5px", boxSizing: "border-box"});
     header.appendTo(div);
 
     minimizeBtn.css({top: 0, right: 0, padding: "10px", position: "absolute"});
     minimizeBtn.appendTo(div);
 
-    content.css({backgroundColor: "rgba(25, 25, 25, 0.8)"});
+    var bgCol = ColorConverter.hexToRgb(window.globalSettings.windowColor);
+    content.css({backgroundColor: ColorConverter.combine(bgCol.r, bgCol.g, bgCol.b, window.globalSettings.windowOpacity)});
     content.appendTo(div);
 
     minimizeBtn.click(function() {

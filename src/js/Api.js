@@ -2,7 +2,11 @@
 Created by Freshek on 28.10.2017
 */
 class Api {
-  static lockShip(ship) {
+  constructor() {
+    this._blackListedBoxes = [];
+  }
+
+  lockShip(ship) {
     if (!(ship instanceof Ship))
       return;
 
@@ -15,7 +19,7 @@ class Api {
     Injector.injectScript(scr);
   }
 
-  static collectBox(box) {
+  collectBox(box) {
     if (!(box instanceof Box))
       return;
 
@@ -23,11 +27,21 @@ class Api {
       return;
 
     Injector.injectScript('document.getElementById("preloader").collectBox' + box.hash + '()');
+
+    this.collectTime = $.now();
   }
 
-  static move(x, y) {
+  move(x, y) {
     if (!isNaN(x) && !isNaN(y)) {
       window.hero.move(new Vector2D(x, y));
     }
+  }
+
+  blackListHash(hash) {
+    this._blackListedBoxes.push(hash);
+  }
+
+  isOnBlacklist(hash) {
+    return this._blackListedBoxes.includes(hash);
   }
 }

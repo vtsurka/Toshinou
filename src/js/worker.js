@@ -1,7 +1,12 @@
 /*
 Created by Freshek on 07.10.2017
 */
+window.globalSettings = new GlobalSettings();
+var api;
+
 $(document).ready(function() {
+  api = new Api();
+
   var preloader = $("#preloader").attr("wmode", "opaque");
   $("#preloader").remove();
 
@@ -25,7 +30,7 @@ $(document).ready(function() {
   var flashVars = document.querySelectorAll('[name="flashvars"]')[0].getAttribute("value");
   window.userId = userIdPttrn.exec(flashVars)[1];
 
-  window.settings = new Settings(false, false, false);
+  window.settings = new Settings();
   window.initialized = false;
 
   window.ships = [];
@@ -35,12 +40,12 @@ $(document).ready(function() {
 
   window.movementDone = true;
 
-  HandlersManager.register("boxInit", new BoxInitHandler());
+  HandlersManager.register("boxInit", new BoxInitHandler(api));
   HandlersManager.register("shipAttack", new ShipAttackHandler());
   HandlersManager.register("shipCreate", new ShipCreateHandler());
   HandlersManager.register("shipMove", new ShipMoveHandler());
   HandlersManager.register("updateHeroPos", new HeroPositionUpdateHandler());
-  HandlersManager.register("assetRemoved", new AssetRemovedHandler());
+  HandlersManager.register("assetRemoved", new AssetRemovedHandler(api));
   HandlersManager.register("heroInit", new HeroInitHandler(init));
   HandlersManager.register("movementDone", new MovementDoneHandler());
   HandlersManager.register("shipDestroyed", new ShipDestroyedHandler());
@@ -65,7 +70,7 @@ function init() {
 
   Injector.injectScriptFromResource("res/injectables/HeroPositionUpdater.js");
 
-  window.setInterval(logic, 300);
+  window.setInterval(logic, window.globalSettings.timerTick);
 
   $(document).keyup(function(e) {
     var key = e.key;
@@ -86,7 +91,7 @@ function init() {
       }
 
       if (finalShip != null)
-        Api.lockShip(finalShip);
+        api.lockShip(finalShip);
     }
   });
 }
@@ -94,14 +99,14 @@ function init() {
 function logic() {
   window.minimap.draw();
 
-  if (window.targetBoxHash == null) {
+  if (api.targetBoxHash == null) {
     var minDist = 100000;
     var finalBox;
     for (var property in window.boxes) {
-      var dist = window.boxes[property].distanceTo(window.hero.position);
+      var box = window.boxes[property];
+      var dist = box.distanceTo(window.hero.position);
 
       if (dist < minDist) {
-        var box = window.boxes[property];
         if (((box.type == "BONUS_BOX" || box.type == "MINI_PUMPKIN") && window.settings.collectBoxes) || (box.isMaterial() && window.settings.collectMaterials)) {
           finalBox = box;
           minDist = dist;
@@ -110,14 +115,18 @@ function logic() {
     }
 
     if (finalBox != null) {
-      Api.collectBox(finalBox);
-      window.targetBoxHash = finalBox.hash;
+      api.collectBox(finalBox);
+      api.targetBoxHash = finalBox.hash;
       return;
     }
 
     if (window.movementDone && window.settings.moveRandomly) {
       window.movementDone = false;
-      Api.move(MathUtils.random(100, 20732), MathUtils.random(58, 12830));
+      api.move(MathUtils.random(100, 20732), MathUtils.random(58, 12830));
     }
+  } else if ($.now() - api.collectTime > 5000) {
+    delete window.boxes[api.targetBoxHash];
+    api.blackListHash(api.targetBoxHash);
+    api.targetBoxHash = null;
   }
 }
