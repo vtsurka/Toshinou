@@ -10,8 +10,13 @@ How to install/use?
 2. Use any web proxy to replace the main.swf and preloader.swf
 3. Enjoy
 
-### Chrome/Chromium
-1. Coming soon!
+### Chrome
+1. Download and extract it.
+2. Open any web proxy and locate the options.
+3. Enable HTTPS decryption (you maybe have to trust the certification and restart the proxy).
+4. Install the addon through chrome://extensions.
+5. Use any web proxy to replace the main.swf and preloader.swf.
+6. Enjoy!
 
 Issues
 ----------
