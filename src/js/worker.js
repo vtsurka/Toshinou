@@ -107,7 +107,7 @@ function logic() {
       var dist = box.distanceTo(window.hero.position);
 
       if (dist < minDist) {
-        if (((box.type == "BONUS_BOX" || box.type == "MINI_PUMPKIN") && window.settings.collectBoxes) || (box.isMaterial() && window.settings.collectMaterials)) {
+        if (((box.type == "BONUS_BOX" || box.type == "MINI_PUMPKIN" || box.type == "TURKISH_FLAG") && window.settings.collectBoxes) || (box.isMaterial() && window.settings.collectMaterials)) {
           finalBox = box;
           minDist = dist;
         }

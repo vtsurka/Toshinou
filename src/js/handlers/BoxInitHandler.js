@@ -13,7 +13,7 @@ class BoxInitHandler {
 
       if (a.isOnBlacklist(box.hash))
         return;
-      
+
       var pBox = new Box(box.x, box.y, box.hash, box[Variables.boxType]);
       window.boxes[box.hash] = pBox;
     };
