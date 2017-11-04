@@ -33,30 +33,33 @@ $(document).ready(function() {
   window.settings = new Settings();
   window.initialized = false;
 
-  window.ships = [];
-  window.boxes = [];
-
   window.targetBoxHash = null;
 
   window.movementDone = true;
 
-  HandlersManager.register("boxInit", new BoxInitHandler(api));
-  HandlersManager.register("shipAttack", new ShipAttackHandler());
-  HandlersManager.register("shipCreate", new ShipCreateHandler());
-  HandlersManager.register("shipMove", new ShipMoveHandler());
-  HandlersManager.register("updateHeroPos", new HeroPositionUpdateHandler());
-  HandlersManager.register("assetRemoved", new AssetRemovedHandler(api));
-  HandlersManager.register("heroInit", new HeroInitHandler(init));
-  HandlersManager.register("movementDone", new MovementDoneHandler());
-  HandlersManager.register("shipDestroyed", new ShipDestroyedHandler());
-  HandlersManager.register("shipRemoved", new ShipRemovedHandler());
+  var hm = new HandlersManager(api);
+
+  hm.registerCommand(BoxInitHandler.ID, new BoxInitHandler());
+  hm.registerCommand(ShipAttackHandler.ID, new ShipAttackHandler());
+  hm.registerCommand(ShipCreateHandler.ID, new ShipCreateHandler());
+  hm.registerCommand(ShipMoveHandler.ID, new ShipMoveHandler());
+  hm.registerCommand(AssetRemovedHandler.ID, new AssetRemovedHandler());
+  hm.registerCommand(HeroInitHandler.ID, new HeroInitHandler(init));
+  hm.registerCommand(ShipDestroyedHandler.ID, new ShipDestroyedHandler());
+  hm.registerCommand(ShipRemovedHandler.ID, new ShipRemovedHandler());
+  hm.registerCommand(GateInitHandler.ID, new GateInitHandler());
+
+  hm.registerEvent("updateHeroPos", new HeroPositionUpdateEventHandler());
+  hm.registerEvent("movementDone", new MovementDoneEventHandler());
+
+  hm.listen();
 });
 
 function init() {
   if (window.initialized)
     return;
 
-  window.minimap = new Minimap();
+  window.minimap = new Minimap(api);
   window.minimap.createWindow();
 
   window.attackWindow = new AttackWindow();
@@ -80,8 +83,8 @@ function init() {
       var finDist = 1000000;
       var finalShip;
 
-      for (var property in window.ships) {
-        var ship = window.ships[property];
+      for (var property in api.ships) {
+        var ship = api.ships[property];
         var dist = ship.distanceTo(window.hero.position);
 
         if (dist < maxDist && dist < finDist && ((ship.isNpc && window.settings.lockNpc && key == "x") || (ship.isEnemy && window.settings.lockPlayers && key == "z"))) {
@@ -102,8 +105,8 @@ function logic() {
   if (api.targetBoxHash == null) {
     var minDist = 100000;
     var finalBox;
-    for (var property in window.boxes) {
-      var box = window.boxes[property];
+    for (var property in api.boxes) {
+      var box = api.boxes[property];
       var dist = box.distanceTo(window.hero.position);
 
       if (dist < minDist) {
@@ -125,7 +128,7 @@ function logic() {
       api.move(MathUtils.random(100, 20732), MathUtils.random(58, 12830));
     }
   } else if ($.now() - api.collectTime > 5000) {
-    delete window.boxes[api.targetBoxHash];
+    delete api.boxes[api.targetBoxHash];
     api.blackListHash(api.targetBoxHash);
     api.targetBoxHash = null;
   }

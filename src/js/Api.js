@@ -4,13 +4,16 @@ Created by Freshek on 28.10.2017
 class Api {
   constructor() {
     this._blackListedBoxes = [];
+    this.gates = [];
+    this.boxes = {};
+    this.ships = {};
   }
 
   lockShip(ship) {
     if (!(ship instanceof Ship))
       return;
 
-    if (window.ships[ship.id] == null)
+    if (this.ships[ship.id] == null)
       return;
 
     ship.update();
@@ -23,7 +26,7 @@ class Api {
     if (!(box instanceof Box))
       return;
 
-    if (window.boxes[box.hash] == null)
+    if (this.boxes[box.hash] == null)
       return;
 
     Injector.injectScript('document.getElementById("preloader").collectBox' + box.hash + '()');

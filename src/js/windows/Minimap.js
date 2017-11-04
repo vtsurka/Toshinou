@@ -3,12 +3,16 @@ Created by Freshek on 07.10.2017
 */
 
 class Minimap {
+  constructor(a) {
+    this._api = a;
+  }
+
   createWindow() {
-    this.minimap = WindowFactory.createWindow({width: 300, height: 200, text: "Minimap"});
+    this.minimap = WindowFactory.createWindow({width: 300, height: 180, text: "Minimap"});
 
     this.canvas = jQuery("<canvas/>", {
       width: 300,
-      height: 200,
+      height: 180,
     });
 
     this.ctx = this.canvas.get(0).getContext("2d");
@@ -34,8 +38,8 @@ class Minimap {
     ct.fillStyle = 'green';
     ct.fillRect(window.hero.position.x / 70, window.hero.position.y / 90, 4, 4);
 
-    for (var property in window.boxes) {
-      var box = window.boxes[property];
+    for (var property in this._api.boxes) {
+      var box = this._api.boxes[property];
 
       if (box == null)
         continue;
@@ -45,8 +49,8 @@ class Minimap {
       ct.fillRect(box.position.x / 70, box.position.y / 90, 2, 2);
     }
 
-    for (var property in window.ships) {
-      var ship = window.ships[property];
+    for (var property in this._api.ships) {
+      var ship = this._api.ships[property];
 
       if (ship == null)
         continue;
@@ -62,13 +66,29 @@ class Minimap {
         ct.fillStyle = "rgb(0, 125, 255)";
       }
 
-      this._drawCircle(ct, pos.x / 70, pos.y / 90, 2);
+      this._fillCircle(ct, pos.x / 70, pos.y / 90, 2);
     }
+
+    ct.strokeStyle = "white";
+    ct.lineWidth = 1;
+    this._api.gates.forEach(gate => {
+      var pos = gate.position;
+      this._strokeCircle(ct, pos.x / 70, pos.y / 90, 4);
+    });
+  }
+
+  _fillCircle(ctx, x, y, r) {
+    this._drawCircle(ctx, x, y, r);
+    ctx.fill();
+  }
+
+  _strokeCircle(ctx, x, y, r) {
+    this._drawCircle(ctx, x, y, r);
+    ctx.stroke();
   }
 
   _drawCircle(ctx, x, y, r) {
     ctx.beginPath();
     ctx.arc(x, y, r, 0, 2 * Math.PI, false);
-    ctx.fill();
   }
 }
