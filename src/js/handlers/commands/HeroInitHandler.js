@@ -13,6 +13,7 @@ class HeroInitHandler {
       // FIXME? reconnect/revive bug? needs confiramtion
       a.ships = [];
       a.boxes = {};
+      a.gates = [];
 
       var heroJson = JSON.parse(e.detail);
 
