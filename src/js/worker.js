@@ -16,9 +16,9 @@ $(document).ready(function() {
     var warning = jQuery("<div>");
     warning.css({top: 0, left: 0, position: "absolute", width: "100%", height: "100%", backgroundColor: "gray", textAlign: "center"});
 
-    jQuery("<h1>").text("The tool has detected unwanted changes in the game.").appendTo(warning);
-    jQuery("<h2>").text("Loading stopped, your account should stay safe.").appendTo(warning);
-    jQuery("<h3>").text("cause: " + check).appendTo(warning);
+    jQuery("<h1>").text("The tool detected changes in the game.").appendTo(warning);
+    jQuery("<h2>").text("Loading stopped! Your account has to stay safe.").appendTo(warning);
+    jQuery("<h3>").text("Reason: " + check).appendTo(warning);
 
     warning.appendTo("body");
     throw new Error("Safety tests failed!");
