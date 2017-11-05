@@ -7,7 +7,7 @@ class SafetyChecker {
     var jsCheck = JavaScriptChecker.safetyCheck();
 
     if (!jsCheck) {
-      return "UNSAFE_JS";
+      return "GAME UPDATE - UNSAFE_JS";
     }
 
     return true;
