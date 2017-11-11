@@ -29,14 +29,14 @@ class WindowFactory {
     div.appendTo("body");
 
     var headerCol = ColorConverter.hexToRgb(window.globalSettings.headerColor);
-    header.css({backgroundColor: ColorConverter.combine(headerCol.r, headerCol.g, headerCol.b, window.globalSettings.headerOpacity), top: 0, left: 0, padding: "5px", boxSizing: "border-box"});
+    header.css({backgroundColor: ColorConverter.combine(headerCol.r, headerCol.g, headerCol.b, window.globalSettings.headerOpacity), top: 0, left: 0, padding: "5px", boxSizing: "border-box", border: "#287490 solid 1px"});
     header.appendTo(div);
 
     minimizeBtn.css({top: 0, right: 0, padding: "10px", position: "absolute"});
     minimizeBtn.appendTo(div);
 
     var bgCol = ColorConverter.hexToRgb(window.globalSettings.windowColor);
-    content.css({backgroundColor: ColorConverter.combine(bgCol.r, bgCol.g, bgCol.b, window.globalSettings.windowOpacity)});
+    content.css({backgroundColor: ColorConverter.combine(bgCol.r, bgCol.g, bgCol.b, window.globalSettings.windowOpacity), boxSizing: "border-box", border: "#287490 solid 1px", borderTop: "none", overflowY: "auto"});
     content.appendTo(div);
 
     minimizeBtn.click(function() {
