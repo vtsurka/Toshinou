@@ -26,7 +26,7 @@ class AutolockWindow {
     ];
 
     options.forEach((option)=>{
-      this[option.name] = OptionFactory.createOption(option);
+      this[option.name] = ControlFactory.checkbox(option);
     });
 
   }

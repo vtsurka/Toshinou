@@ -51,7 +51,7 @@
         "js/handlers/commands/ShipSelectedHandler.js",
         "js/Api.js",
         "js/worker.js",
-        "js/OptionFactory.js"
+        "js/ControlFactory.js"
       ],
       "css": [
         "css/style.css"

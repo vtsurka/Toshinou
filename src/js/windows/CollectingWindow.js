@@ -6,7 +6,7 @@ class CollectingWindow {
   createWindow() {
     this.botSettingsWindow = WindowFactory.createWindow({width: 300, text: "Collecting"});
 
-    let options = [
+    let controls = [
       {
         name: 'collectBoxes',
         labelText: 'Collect boxes',
@@ -47,13 +47,12 @@ class CollectingWindow {
         event: function (ev) {
           window.settings.collectionSensitivity = this.value;
           $('span:last-child', this.label).text(' (' + this.value + '%)');
-
         }
       },
     ];
 
-    options.forEach((option)=>{
-      this[option.name] = OptionFactory.createOption(option);
+    controls.forEach((control)=>{
+      this[control.name] = ControlFactory.createControl(control);
     });
   }
 }
