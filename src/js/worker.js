@@ -48,6 +48,7 @@ $(document).ready(function() {
   hm.registerCommand(ShipDestroyedHandler.ID, new ShipDestroyedHandler());
   hm.registerCommand(ShipRemovedHandler.ID, new ShipRemovedHandler());
   hm.registerCommand(GateInitHandler.ID, new GateInitHandler());
+  hm.registerCommand(ShipSelectedHandler.ID, new ShipSelectedHandler());
 
   hm.registerEvent("updateHeroPos", new HeroPositionUpdateEventHandler());
   hm.registerEvent("movementDone", new MovementDoneEventHandler());

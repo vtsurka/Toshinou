@@ -6,37 +6,38 @@ class WindowFactory {
   static createWindow(params) {
     var div = jQuery("<div/>", {
       width: params.width != null ? params.width : 400,
-      height: params.height != null ? params.height + 40: 300,
+      height: params.height != null ? params.height + 40:'',
     });
 
-    var content = jQuery("<div/>", {
-      width: params.width,
-      height: params.height
-    });
+    div.attr("class", "window");
+
+    var content = jQuery("<div/>");
+
+    content.attr("class", "content");
 
     var header = jQuery("<h4/>", {
-      width: "100%",
-      height: "40px",
       text: params.text != null ? params.text : "window"
     });
 
-    var minimizeBtn = jQuery("<h4/>", {
-      height: "40px",
-      text: "–"
-    })
+    header.attr("class", "header");
+
+    var minimizeBtn = jQuery("<span/>", {
+      text: "_"
+    });
+
+    minimizeBtn.attr("class", "minimize-btn");
 
     div.css({backgroundColor: "transparent", position: "absolute"});
     div.appendTo("body");
 
     var headerCol = ColorConverter.hexToRgb(window.globalSettings.headerColor);
-    header.css({backgroundColor: ColorConverter.combine(headerCol.r, headerCol.g, headerCol.b, window.globalSettings.headerOpacity), top: 0, left: 0, padding: "5px", boxSizing: "border-box", border: "#287490 solid 1px"});
+    header.css({backgroundColor: ColorConverter.combine(headerCol.r, headerCol.g, headerCol.b, window.globalSettings.headerOpacity)});
     header.appendTo(div);
 
-    minimizeBtn.css({top: 0, right: 0, padding: "10px", position: "absolute"});
-    minimizeBtn.appendTo(div);
+    minimizeBtn.appendTo(header);
 
     var bgCol = ColorConverter.hexToRgb(window.globalSettings.windowColor);
-    content.css({backgroundColor: ColorConverter.combine(bgCol.r, bgCol.g, bgCol.b, window.globalSettings.windowOpacity), boxSizing: "border-box", border: "#287490 solid 1px", borderTop: "none", overflowY: "auto"});
+    content.css({backgroundColor: ColorConverter.combine(bgCol.r, bgCol.g, bgCol.b, window.globalSettings.windowOpacity), overflowY: params.scrollable ? "scroll" : "inherit"});
     content.appendTo(div);
 
     minimizeBtn.click(function() {

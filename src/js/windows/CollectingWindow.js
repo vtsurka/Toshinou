@@ -4,7 +4,7 @@ Created by Freshek on 14.10.2017
 
 class CollectingWindow {
   createWindow() {
-    this.botSettingsWindow = WindowFactory.createWindow({width: 300, height: 100, text: "Collecting"});
+    this.botSettingsWindow = WindowFactory.createWindow({width: 300, text: "Collecting"});
 
     this.collectBoxesBox = jQuery("<input>")
     this.collectBoxesBox.attr("type", "checkbox");

@@ -4,7 +4,7 @@ Created by Freshek on 28.10.2017
 
 class AutolockWindow {
   createWindow() {
-    this.autolockWindow = WindowFactory.createWindow({width: 300, height: 100, text: "Autolocker (experimental)"});
+    this.autolockWindow = WindowFactory.createWindow({width: 300, text: "Autolocker (experimental)"});
 
     this.lockNpcBox = jQuery("<input>").attr("type", "checkbox");
     this.lockNpcLabel = jQuery("<label>").text("Autolock NPCs (key: x)");

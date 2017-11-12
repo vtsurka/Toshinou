@@ -50,4 +50,12 @@ class Settings {
   set lockPlayers(value) {
     this._lockPlayers = value === true;
   }
+
+  setNpc(name, val) {
+    this._npcs[name] = val;
+  }
+
+  getNpc(name) {
+    return this._npcs[name] == true;
+  }
 }
