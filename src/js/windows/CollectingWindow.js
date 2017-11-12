@@ -32,13 +32,13 @@ class CollectingWindow {
     this.collectionSensitivityInput.attr("min", "1");
     this.collectionSensitivityInput.attr("max", "100");
     this.collectionSensitivityInput.attr("step", "1");
-    this.collectionSensitivityInput.attr("value", "30");
+    this.collectionSensitivityInput.attr("value", "100");
 
     this.collectionSensitivityLabel = jQuery("<label>");
     this.collectionSensitivityLabel.text("Collection sensitivity");
 
     let collectionSensitivityVal = jQuery("<span>");
-    collectionSensitivityVal.text("(30%)");
+    collectionSensitivityVal.text(" (100%)");
 
 
     this.collectBoxesBox.change(function() {
@@ -55,7 +55,7 @@ class CollectingWindow {
 
     this.collectionSensitivityInput.change(function() {
       window.settings.collectionSensitivity = this.value;
-      collectionSensitivityVal.html('('+this.value+'%)');
+      collectionSensitivityVal.html(' ('+this.value+'%)');
     });
 
     this.collectBoxesBox.appendTo(this.botSettingsWindow);
