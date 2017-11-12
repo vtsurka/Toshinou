@@ -7,41 +7,40 @@ class OptionFactory {
         appendTo,
         br=true,
         eventType="change",
-        event = ()=>{},
+        event = ()=> {},
         attrs = {},
     }) {
         let option = jQuery("<input>");
         option.attr("type", type);
 
-        Object.keys(attrs).forEach((name)=>{
+        Object.keys(attrs).forEach((name)=> {
             option.attr(name, attrs[name]);
         });
 
         let label = jQuery("<label>");
         label.html(labelText);
 
-        if(labelBefore) {
+        if (labelBefore) {
             label.appendTo(appendTo);
         }
 
         option.appendTo(appendTo);
 
-        if(!labelBefore) {
+        if (!labelBefore) {
             label.appendTo(appendTo);
         }
 
-        if(br){
+        if (br) {
             jQuery("<br>").appendTo(appendTo);
         }
 
-        option[eventType](function(ev){
+        option[eventType](function (ev) {
             this.option = option;
             this.label = label;
             event.call(this, ev);
         });
 
         return {option, label};
-
     }
 
 }
