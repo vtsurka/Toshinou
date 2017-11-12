@@ -36,7 +36,7 @@ class WindowFactory {
     minimizeBtn.appendTo(div);
 
     var bgCol = ColorConverter.hexToRgb(window.globalSettings.windowColor);
-    content.css({backgroundColor: ColorConverter.combine(bgCol.r, bgCol.g, bgCol.b, window.globalSettings.windowOpacity)});
+    content.css({backgroundColor: ColorConverter.combine(bgCol.r, bgCol.g, bgCol.b, window.globalSettings.windowOpacity), overflowY: params.scrollable ? "scroll" : "inherit"});
     content.appendTo(div);
 
     minimizeBtn.click(function() {

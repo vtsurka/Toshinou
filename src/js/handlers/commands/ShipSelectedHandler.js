@@ -12,4 +12,8 @@ class ShipSelectedHandler {
       
     }
   }
+
+  get handler() {
+    return this._handler;
+  }
 }
