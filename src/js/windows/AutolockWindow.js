@@ -6,26 +6,28 @@ class AutolockWindow {
   createWindow() {
     this.autolockWindow = WindowFactory.createWindow({width: 300, text: "Autolocker (experimental)"});
 
-    this.lockNpcBox = jQuery("<input>").attr("type", "checkbox");
-    this.lockNpcLabel = jQuery("<label>").text("Autolock NPCs (key: x)");
+    let options = [
+      {
+        name: 'lockNpc',
+        labelText: 'Autolock NPCs (key: x)',
+        appendTo: this.autolockWindow,
+        event: function () {
+          window.settings.lockNpc = this.checked;
+        }
+      },
+      {
+        name: 'lockPlayers',
+        labelText: 'Autolock Players (key: z)',
+        appendTo: this.autolockWindow,
+        event: function () {
+          window.settings.lockPlayers = this.checked;
+        }
+      },
+    ];
 
-    var br = jQuery("<br>");
-
-    this.lockPlayersBox = jQuery("<input>").attr("type", "checkbox");
-    this.lockPlayersLabel = jQuery("<label>").text("Autolock Players (key: z)");
-
-    this.lockNpcBox.change(function() {
-      window.settings.lockNpc = this.checked;
+    options.forEach((option)=>{
+      this[option.name] = OptionFactory.createOption(option);
     });
 
-    this.lockPlayersBox.change(function() {
-      window.settings.lockPlayers = this.checked;
-    });
-
-    this.lockNpcBox.appendTo(this.autolockWindow);
-    this.lockNpcLabel.appendTo(this.autolockWindow);
-    br.appendTo(this.autolockWindow);
-    this.lockPlayersBox.appendTo(this.autolockWindow);
-    this.lockPlayersLabel.appendTo(this.autolockWindow);
   }
 }
