@@ -103,7 +103,7 @@ function init() {
 function logic() {
   window.minimap.draw();
 
-  if (api.targetBoxHash == null && api.) {
+  if (api.targetBoxHash == null) {
     var minDist = 100000;
     var finalBox;
     for (var property in api.boxes) {
