@@ -22,6 +22,18 @@ class Api {
     Injector.injectScript(scr);
   }
 
+  lockNpc(ship) {
+    if (!(ship instanceof Ship))
+      return;
+
+    if (this.ships[ship.id] == null)
+      return;
+
+    this.lockTime = $.now();
+
+    this.lockShip(ship);
+  }
+
   collectBox(box) {
     if (!(box instanceof Box))
       return;
@@ -50,5 +62,9 @@ class Api {
 
   isOnBlacklist(hash) {
     return this._blackListedBoxes.includes(hash);
+  }
+
+  startLaserAttack() {
+    Injector.injectScript('document.getElementById("preloader").laserAttack()');
   }
 }

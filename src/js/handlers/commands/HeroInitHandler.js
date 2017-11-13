@@ -14,6 +14,10 @@ class HeroInitHandler {
       a.ships = [];
       a.boxes = {};
       a.gates = [];
+      a.targetShip = null;
+      a.attacking = false;
+      a.triedToLock = false;
+      a.lockedShip = null;
 
       var heroJson = JSON.parse(e.detail);
 

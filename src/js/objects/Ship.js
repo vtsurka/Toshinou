@@ -17,7 +17,6 @@ class Ship extends Movable {
     this.lastUpdate = $.now();
   }
 
-
   get isEnemy() {
     return window.hero.factionId != this.factionId;
   }
