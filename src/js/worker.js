@@ -160,7 +160,7 @@ function logic() {
   }
 
   if (api.targetShip && window.settings.killNpcs) {
-    if (!api.triedToLock && (api.lockedShip == null || api.lockedShip.id != api.targetShip)) {
+    if (!api.triedToLock && (api.lockedShip == null || api.lockedShip.id != api.targetShip.id)) {
       api.targetShip.update();
       var dist = api.targetShip.distanceTo(window.hero.position);
       if (dist < 1000) {
