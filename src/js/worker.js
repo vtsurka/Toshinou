@@ -207,8 +207,8 @@ function logic() {
       x = api.targetShip.position.x - MathUtils.random(-50, 50);
       y = api.targetShip.position.y - MathUtils.random(-50, 50);
     } else if (dist > 300 && api.lockedShip && api.lockedShip.id == api.targetShip.id) {
-      x = api.targetShip.position.x - 100 + MathUtils.random(-150, 150);
-      y = api.targetShip.position.y - 100 + MathUtils.random(-150, 150);
+      x = api.targetShip.position.x + MathUtils.random(-200, 200);
+      y = api.targetShip.position.y + MathUtils.random(-200, 200);
     }
   }
 
