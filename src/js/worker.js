@@ -177,10 +177,11 @@ function logic() {
     }
   }
 
-  if (api.targetBoxHash != null && $.now() - api.collectTime > 5000) {
+  if (api.targetBoxHash && $.now() - api.collectTime > 5000) {
     delete api.boxes[api.targetBoxHash];
     api.blackListHash(api.targetBoxHash);
     api.targetBoxHash = null;
+    console.log("blacklist!");
   }
 
   //HACK: npc stucks fallback
@@ -203,9 +204,10 @@ function logic() {
     api.targetShip.update();
     var dist = api.targetShip.distanceTo(window.hero.position);
 
-    if (dist > 1000 && (api.lockedShip == null || api.lockedShip.id != api.targetShip.id)) {
+    if (dist > 1000 && (api.lockedShip == null || api.lockedShip.id != api.targetShip.id) && $.now() - api.lastMovement > 1000) {
       x = api.targetShip.position.x - MathUtils.random(-50, 50);
       y = api.targetShip.position.y - MathUtils.random(-50, 50);
+      api.lastMovement = $.now();
     } else if (dist > 300 && api.lockedShip && api.lockedShip.id == api.targetShip.id) {
       x = api.targetShip.position.x + MathUtils.random(-200, 200);
       y = api.targetShip.position.y + MathUtils.random(-200, 200);

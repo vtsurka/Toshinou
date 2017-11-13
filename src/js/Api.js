@@ -7,6 +7,7 @@ class Api {
     this.gates = [];
     this.boxes = {};
     this.ships = {};
+    this.lastMovement = 0;
   }
 
   lockShip(ship) {
