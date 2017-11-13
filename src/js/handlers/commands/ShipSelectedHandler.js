@@ -9,7 +9,11 @@ class ShipSelectedHandler {
 
   constructor() {
     this._handler = function(e, a) {
-      
+      var parsedJson = JSON.parse(e.detail);
+
+      var ship = a.ships[parsedJson.userId];
+      if (ship != null)
+        a.lockedShip = ship;
     }
   }
 

@@ -15,6 +15,9 @@ class WindowFactory {
 
     content.attr("class", "content");
 
+    if (params.height)
+      content.css("height", params.height - 2 + "px"); //FIXME: adjust the style.css in order to prevent situations like these…
+
     var header = jQuery("<h4/>", {
       text: params.text != null ? params.text : "window"
     });

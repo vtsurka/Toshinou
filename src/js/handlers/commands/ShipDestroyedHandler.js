@@ -12,6 +12,13 @@ class ShipDestroyedHandler {
       var parsed = JSON.parse(e.detail);
       var id = parsed[Variables.shipDestoyedId];
 
+      if (a.targetShip && id == a.targetShip.id) {
+        a.targetShip = null;
+        a.attacking = false;
+        a.triedToLock = false;
+        a.lockedShip = null;
+      }
+
       var ship = a.ships[id];
 
       if (ship != null) {

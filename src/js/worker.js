@@ -33,8 +33,6 @@ $(document).ready(function() {
   window.settings = new Settings();
   window.initialized = false;
 
-  window.targetBoxHash = null;
-
   window.movementDone = true;
 
   var hm = new HandlersManager(api);
@@ -72,6 +70,9 @@ function init() {
   window.autolockWindow = new AutolockWindow();
   window.autolockWindow.createWindow();
 
+  window.npcSettingsWindow = new NpcSettingsWindow();
+  window.npcSettingsWindow.createWindow();
+
   Injector.injectScriptFromResource("res/injectables/HeroPositionUpdater.js");
 
   window.setInterval(logic, window.globalSettings.timerTick);
@@ -103,34 +104,108 @@ function init() {
 function logic() {
   window.minimap.draw();
 
-  if (api.targetBoxHash == null) {
-    var minDist = 100000;
-    var finalBox;
-    for (var property in api.boxes) {
-      var box = api.boxes[property];
-      var dist = box.distanceTo(window.hero.position);
+  if (api.targetBoxHash == null && api.targetShip == null) {
+    if (window.settings.killNpcs) {
+      if (api.targetShip == null) {
+        var minDist = 100000;
+        var finalShip;
+        for (var property in api.ships) {
+          var ship = api.ships[property];
+          ship.update();
+          var dist = ship.distanceTo(window.hero.position);
 
-      if (dist < minDist) {
-        if (((box.type == "BONUS_BOX" || box.type == "MINI_PUMPKIN" || box.type == "TURKISH_FLAG") && window.settings.collectBoxes) || (box.isMaterial() && window.settings.collectMaterials)) {
-          finalBox = box;
-          minDist = dist;
+          if (dist < minDist) {
+            if (window.settings.getNpc(ship.name)) {
+              finalShip = ship;
+              minDist = dist;
+            }
+          }
+        }
+
+        if (finalShip != null) {
+          if (minDist < 2000) {
+            api.lockShip(finalShip);
+            api.triedToLock = true;
+          } else {
+            finalShip.update();
+            api.move(finalShip.position.x - MathUtils.random(-50, 50), finalShip.position.y - MathUtils.random(-50, 50));
+          }
+          api.targetShip = finalShip;
+          return;
         }
       }
     }
 
-    if (finalBox != null) {
-      api.collectBox(finalBox);
-      api.targetBoxHash = finalBox.hash;
-      return;
+    if (window.settings.collectBoxes || window.settings.collectMaterials) {
+      var minDist = 100000;
+      var finalBox;
+      for (var property in api.boxes) {
+        var box = api.boxes[property];
+        var dist = box.distanceTo(window.hero.position);
+
+        if (dist < minDist) {
+          if (((box.type == "BONUS_BOX" || box.type == "MINI_PUMPKIN" || box.type == "TURKISH_FLAG") && window.settings.collectBoxes) || (box.isMaterial() && window.settings.collectMaterials)) {
+            finalBox = box;
+            minDist = dist;
+          }
+        }
+      }
+
+      if (finalBox != null) {
+        api.collectBox(finalBox);
+        api.targetBoxHash = finalBox.hash;
+        return;
+      }
+    }
+  }
+
+  if (api.targetShip && window.settings.killNpcs) {
+    if (!api.triedToLock && (api.lockedShip == null || api.lockedShip.id != api.targetShip)) {
+      api.targetShip.update();
+      var dist = api.targetShip.distanceTo(window.hero.position);
+      if (dist < 1000) {
+        api.lockShip(api.targetShip);
+        api.triedToLock = true;
+        return;
+      }
     }
 
-    if (window.movementDone && window.settings.moveRandomly) {
-      window.movementDone = false;
-      api.move(MathUtils.random(100, 20732), MathUtils.random(58, 12830));
+    if (!api.attacking && api.lockedShip) {
+      api.startLaserAttack();
+      api.attacking = true;
+      return;
     }
-  } else if ($.now() - api.collectTime > 5000) {
+  }
+
+  if (api.targetBoxHash != null && $.now() - api.collectTime > 5000) {
     delete api.boxes[api.targetBoxHash];
     api.blackListHash(api.targetBoxHash);
     api.targetBoxHash = null;
+  }
+
+  var x;
+  var y;
+
+  if (api.targetBoxHash == null && api.targetShip == null && window.movementDone && window.settings.moveRandomly) {
+    x = MathUtils.random(100, 20732);
+    y = MathUtils.random(58, 12830);
+  }
+
+  if (api.targetShip) {
+    api.targetShip.update();
+    var dist = api.targetShip.distanceTo(window.hero.position);
+
+    if (dist > 1000 && (api.lockedShip == null || api.lockedShip.id != api.targetShip.id)) {
+      x = api.targetShip.position.x - MathUtils.random(-50, 50);
+      y = api.targetShip.position.y - MathUtils.random(-50, 50);
+    } else if (dist > 500 && api.lockedShip && api.lockedShip.id == api.targetShip.id) {
+      x = api.targetShip.position.x - 350 + MathUtils.random(-50, 50);
+      y = api.targetShip.position.y - 350 + MathUtils.random(-50, 50);
+    }
+  }
+
+  if (x && y) {
+    api.move(x, y);
+    window.movementDone = false;
   }
 }

@@ -3,12 +3,14 @@ Created by Freshek on 14.10.2017
 */
 
 class Settings {
-  constructor(collectBoxes, collectMaterials, moveRandomly, lockNpc, lockPlayers) {
+  constructor(collectBoxes, collectMaterials, moveRandomly, lockNpc, lockPlayers, killNpcs) {
     this._collectBoxes = collectBoxes === true;
     this._collectMaterials = collectMaterials === true;
     this._moveRandomly = moveRandomly === true;
     this._lockNpc = lockNpc === true;
     this._lockPlayers = lockPlayers === true;
+    this._killNpcs = killNpcs === true;
+    this._npcs = [];
   }
 
   get collectBoxes() {
@@ -49,6 +51,14 @@ class Settings {
 
   set lockPlayers(value) {
     this._lockPlayers = value === true;
+  }
+
+  get killNpcs() {
+    return this._killNpcs;
+  }
+
+  set killNpcs(value) {
+    this._killNpcs = value === true;
   }
 
   setNpc(name, val) {
