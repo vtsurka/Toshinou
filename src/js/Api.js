@@ -41,6 +41,10 @@ class Api {
     if (this.boxes[box.hash] == null)
       return;
 
+    if(MathUtils.random(1, 100) >= window.settings.collectionSensitivity){
+      return;
+    }
+
     Injector.injectScript('document.getElementById("preloader").collectBox' + box.hash + '()');
 
     this.collectTime = $.now();
