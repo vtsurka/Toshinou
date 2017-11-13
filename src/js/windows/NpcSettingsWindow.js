@@ -61,7 +61,10 @@ class NpcSettingsWindow {
       "( UberLordakium )",
       "( UberKristallin )",
       "( UberKristallon )",
-      "( UberStreuneR )"
+      "( UberStreuneR )",
+      "-=[ Blighted Kristallon ]=-",
+      "-=[ Plagued Kristallin ]=-",
+      "-=[ Plague Rocket ]=-"
     ];
   }
 }
