@@ -15,6 +15,9 @@ class WindowFactory {
 
     content.attr("class", "content");
 
+    if (params.maxHeight)
+      content.css("max-height", params.maxHeight + "px");
+
     if (params.height)
       content.css("height", params.height - 2 + "px"); //FIXME: adjust the style.css in order to prevent situations like these…
 
@@ -40,7 +43,7 @@ class WindowFactory {
     minimizeBtn.appendTo(header);
 
     var bgCol = ColorConverter.hexToRgb(window.globalSettings.windowColor);
-    content.css({backgroundColor: ColorConverter.combine(bgCol.r, bgCol.g, bgCol.b, window.globalSettings.windowOpacity), overflowY: params.scrollable ? "scroll" : "inherit"});
+    content.css({backgroundColor: ColorConverter.combine(bgCol.r, bgCol.g, bgCol.b, window.globalSettings.windowOpacity)});
     content.appendTo(div);
 
     minimizeBtn.click(function() {
