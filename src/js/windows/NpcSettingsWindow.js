@@ -39,7 +39,29 @@ class NpcSettingsWindow {
       "-=[ Kristallon ]=-",
       "-=[ StreuneR ]=-",
       "-=[ Protegit ]=-",
-      "-=[ Cubikon ]=-"
+      "-=[ Cubikon ]=-",
+      "..::{ Boss Streuner }::..",
+      "..::{ Boss Lordakia }::..",
+      "..::{ Boss Mordon }::..",
+      "..::{ Boss Saimon }::..",
+      "..::{ Boss Devolarium }::..",
+      "..::{ Boss Sibelonit }::..",
+      "..::{ Boss Sibelon }::..",
+      "..::{ Boss Lordakium }::...",
+      "..::{ Boss Kristallin }::..",
+      "..::{ Boss Kristallon }::..",
+      "..::{ Boss StreuneR }::..",
+      "( UberStreuner )",
+      "( UberLordakia )",
+      "( UberMordon )",
+      "( UberSaimon )",
+      "( UberDevolarium )",
+      "( UberSibelonit )",
+      "( UberSibelon )",
+      "( UberLordakium )",
+      "( UberKristallin )",
+      "( UberKristallon )",
+      "( UberStreuneR )"
     ];
   }
 }
