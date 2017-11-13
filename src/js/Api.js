@@ -20,6 +20,8 @@ class Api {
     var pos = ship.position;
     var scr = 'document.getElementById("preloader").lockShip(' + ship.id + ',' + Math.round(pos.x) + ',' + Math.round(pos.y) + ',' + Math.round(window.hero.position.x) + ',' + Math.round(window.hero.position.y) + ');';
     Injector.injectScript(scr);
+
+    this.lockTime = $.now();
   }
 
   lockNpc(ship) {
