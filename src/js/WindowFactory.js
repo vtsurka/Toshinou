@@ -48,10 +48,18 @@ class WindowFactory {
 
     minimizeBtn.click(function() {
       if (content.css("display") !== "none") {
-        content.fadeOut(500);
+        content.fadeOut(500, function() {
+          if (params.height) { //HACK: another hack, I hate CSS
+            div.css("height", 40);
+          }
+        });
       }
       else {
-        content.fadeIn(500);
+        content.fadeIn(500, function() {
+          if (params.height) { //HACK: please, someone, fix it
+            div.css("height", params.height + 40);
+          }
+        });
       }
     });
 

@@ -33,7 +33,7 @@ class Minimap {
   draw() {
     var ct = this.ctx;
 
-    ct.clearRect(0, 0, this.canvas.width(), this.canvas.height());
+    ct.clearRect(0, 0, this.canvas.width() + 40, this.canvas.height() + 40);
 
     ct.fillStyle = 'green';
     ct.fillRect(window.hero.position.x / 70, window.hero.position.y / 90, 4, 4);
