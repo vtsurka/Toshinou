@@ -123,7 +123,7 @@ function logic() {
         }
 
         if (finalShip != null) {
-          if (minDist < 2000) {
+          if (minDist < 1000) {
             api.lockShip(finalShip);
             api.triedToLock = true;
           } else {
@@ -181,6 +181,14 @@ function logic() {
     delete api.boxes[api.targetBoxHash];
     api.blackListHash(api.targetBoxHash);
     api.targetBoxHash = null;
+  }
+
+  //HACK: npc stucks fallback
+  if (api.targetShip && $.now() - api.lockTime > 5000 && !api.attacking) {
+    api.targetShip = null;
+    api.attacking = false;
+    api.triedToLock = false;
+    api.lockedShip = null;
   }
 
   var x;
