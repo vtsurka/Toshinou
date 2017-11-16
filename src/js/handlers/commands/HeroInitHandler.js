@@ -18,6 +18,7 @@ class HeroInitHandler {
       a.attacking = false;
       a.triedToLock = false;
       a.lockedShip = null;
+      a.heroDied = false;
 
       var heroJson = JSON.parse(e.detail);
 

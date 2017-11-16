@@ -102,6 +102,9 @@ function init() {
 }
 
 function logic() {
+  if (api.heroDied)
+    return;
+
   window.minimap.draw();
 
   if (api.targetBoxHash == null && api.targetShip == null) {
@@ -181,7 +184,6 @@ function logic() {
     delete api.boxes[api.targetBoxHash];
     api.blackListHash(api.targetBoxHash);
     api.targetBoxHash = null;
-    console.log("blacklist!");
   }
 
   //HACK: npc stucks fallback
