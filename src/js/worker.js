@@ -108,59 +108,25 @@ function logic() {
   window.minimap.draw();
 
   if (api.targetBoxHash == null && api.targetShip == null) {
-    if (window.settings.killNpcs) {
-      if (api.targetShip == null) {
-        var minDist = 100000;
-        var finalShip;
-        for (var property in api.ships) {
-          var ship = api.ships[property];
-          ship.update();
-          var dist = ship.distanceTo(window.hero.position);
+      var box = api.findNearestBox();
+      var ship = api.findNearestShip();
 
-          if (dist < minDist) {
-            if (window.settings.getNpc(ship.name)) {
-              finalShip = ship;
-              minDist = dist;
-            }
-          }
-        }
-
-        if (finalShip != null) {
-          if (minDist < 1000) {
-            api.lockShip(finalShip);
-            api.triedToLock = true;
-          } else {
-            finalShip.update();
-            api.move(finalShip.position.x - MathUtils.random(-50, 50), finalShip.position.y - MathUtils.random(-50, 50));
-          }
-          api.targetShip = finalShip;
-          return;
-        }
-      }
-    }
-
-    if (window.settings.collectBoxes || window.settings.collectMaterials) {
-      var minDist = 100000;
-      var finalBox;
-      for (var property in api.boxes) {
-        var box = api.boxes[property];
-        var dist = box.distanceTo(window.hero.position);
-
-        if (dist < minDist) {
-          if (((box.type == "BONUS_BOX" || box.type == "MINI_PUMPKIN" || box.type == "TURKISH_FLAG") && window.settings.collectBoxes) || (box.isMaterial() && window.settings.collectMaterials)) {
-            finalBox = box;
-            minDist = dist;
-          }
-        }
-      }
-
-      if (finalBox != null) {
-        api.collectBox(finalBox);
-        api.targetBoxHash = finalBox.hash;
+      if ((!ship || ship.distance > 1000 || !ship.ship) && (box && box.box)) {
+        api.collectBox(box.box);
+        api.targetBoxHash = box.box.hash;
+        return;
+      } else if (ship.ship && ship && ship.distance < 1000 && window.settings.killNpcs) {
+        api.lockShip(ship.ship);
+        api.triedToLock = true;
+        api.targetShip = ship.ship;
+        return;
+      } else if (ship.ship && ship && window.settings.killNpcs) {
+        ship.ship.update();
+        api.move(ship.ship.position.x - MathUtils.random(-50, 50), ship.ship.position.y - MathUtils.random(-50, 50));
+        api.targetShip = ship.ship;
         return;
       }
     }
-  }
 
   if (api.targetShip && window.settings.killNpcs) {
     if (!api.triedToLock && (api.lockedShip == null || api.lockedShip.id != api.targetShip.id)) {

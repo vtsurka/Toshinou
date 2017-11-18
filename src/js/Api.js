@@ -70,4 +70,40 @@ class Api {
   startLaserAttack() {
     Injector.injectScript('document.getElementById("preloader").laserAttack()');
   }
+
+  findNearestBox() {
+    var minDist = 100000;
+    var finalBox;
+    for (var property in this.boxes) {
+      var box = this.boxes[property];
+      var dist = box.distanceTo(window.hero.position);
+
+      if (dist < minDist) {
+        if (((box.type == "BONUS_BOX" || box.type == "MINI_PUMPKIN" || box.type == "TURKISH_FLAG") && window.settings.collectBoxes) || (box.isMaterial() && window.settings.collectMaterials)) {
+          finalBox = box;
+          minDist = dist;
+        }
+      }
+    }
+    return {box: finalBox, distance: minDist};
+  }
+
+  findNearestShip() {
+    var minDist = 100000;
+    var finalShip;
+    for (var property in this.ships) {
+      var ship = this.ships[property];
+      ship.update();
+      var dist = ship.distanceTo(window.hero.position);
+
+      if (dist < minDist) {
+        if (window.settings.getNpc(ship.name)) {
+          finalShip = ship;
+          minDist = dist;
+        }
+      }
+    }
+
+    return {ship: finalShip, distance: minDist};
+  }
 }
