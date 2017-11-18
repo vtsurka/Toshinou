@@ -50,6 +50,7 @@
         "js/handlers/commands/GateInitHandler.js",
         "js/handlers/commands/ShipSelectedHandler.js",
         "js/Api.js",
+        "js/ControlFactory.js",
         "js/worker.js"
       ],
       "css": [

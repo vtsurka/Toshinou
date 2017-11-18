@@ -4,22 +4,35 @@ Created by Freshek on 11.11.2017
 
 class NpcSettingsWindow {
   createWindow() {
-    this.npcSettingsWindow = WindowFactory.createWindow({width: 300, height: 100, text: "NPC Killer Settings", scrollable: true});
+    this.npcSettingsWindow = WindowFactory.createWindow({ width: 300, maxHeight: 100, text: "NPC Killer Settings" });
 
-    var simpleDiv = jQuery("<div>").css("height", "100%").appendTo(this.npcSettingsWindow);
+    let controls = [
+      {
+        name: 'npcKiller',
+        labelText: 'Enable NPC killer (experimental)',
+        appendTo: this.npcSettingsWindow,
+        event: function () {
+          window.settings.killNpcs = this.checked;
+        }
+      }
+    ];
 
-    jQuery("<input>").attr("type", "checkbox").change(function() {
-      window.settings.killNpcs = this.checked;
-    }).appendTo(simpleDiv);
-    jQuery("<label>").text("Enable NPC killer (experimental)").appendTo(simpleDiv);
-    jQuery("<br>").appendTo(simpleDiv);
+    this.knownNpcList.forEach((n, i) => {
 
-    this.knownNpcList.forEach(n => {
-      jQuery("<input>").attr("type", "checkbox").change(function() {
-        window.settings.setNpc(n, this.checked);
-      }).appendTo(simpleDiv);
-      jQuery("<label>").text(n).appendTo(simpleDiv);
-      jQuery("<br>").appendTo(simpleDiv);
+      controls.push({
+        name: `npc${i}`,
+        labelText: n,
+        appendTo: this.npcSettingsWindow,
+        event: function () {
+          window.settings.setNpc(n, this.checked);
+        }
+      });
+
+    });
+
+
+    controls.forEach((control)=>{
+      this[control.name] = ControlFactory.createControl(control);
     });
   }
 
