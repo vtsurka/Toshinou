@@ -24,7 +24,7 @@ class HandlersManager {
       var cmd = s[1];
       var h = self.handlers[id];
       if (h != null) {
-        h({detail: cmd}, self._api);
+        h({detail: cmd, wholeMessage: e.detail}, self._api);
       }
     });
   }
