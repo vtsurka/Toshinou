@@ -47,6 +47,7 @@ $(document).ready(function() {
   hm.registerCommand(ShipRemovedHandler.ID, new ShipRemovedHandler());
   hm.registerCommand(GateInitHandler.ID, new GateInitHandler());
   hm.registerCommand(ShipSelectedHandler.ID, new ShipSelectedHandler());
+  hm.registerCommand(MessagesHandler.ID, new MessagesHandler());
 
   hm.registerEvent("updateHeroPos", new HeroPositionUpdateEventHandler());
   hm.registerEvent("movementDone", new MovementDoneEventHandler());
@@ -72,6 +73,9 @@ function init() {
 
   window.npcSettingsWindow = new NpcSettingsWindow();
   window.npcSettingsWindow.createWindow();
+
+  window.statisticWindow = new StatisticWindow();
+  window.statisticWindow.createWindow();
 
   Injector.injectScriptFromResource("res/injectables/HeroPositionUpdater.js");
 

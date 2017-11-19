@@ -1,5 +1,22 @@
 class ControlFactory {
 
+    static info({labelText, spanText, appendTo }){
+        let info = jQuery("<div>");
+
+        let label = jQuery("<label>");
+        label.html(labelText);
+        label.appendTo(info);
+
+        let span = jQuery("<span>");
+        span.html(spanText);
+        span.appendTo(info);
+
+
+        info.appendTo(appendTo);
+
+        return info;
+    }
+
     static select({labelText, appendTo, eventType="change", event = ()=> {}, attrs = {}, options=[]}){
 
         let select = jQuery("<select>");

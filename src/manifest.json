@@ -31,6 +31,7 @@
         "js/windows/CollectingWindow.js",
         "js/windows/AutolockWindow.js",
         "js/windows/NpcSettingsWindow.js",
+        "js/windows/StatisticWindow.js",
         "js/objects/Movable.js",
         "js/objects/Box.js",
         "js/objects/Hero.js",
@@ -49,6 +50,7 @@
         "js/handlers/commands/ShipRemovedHandler.js",
         "js/handlers/commands/GateInitHandler.js",
         "js/handlers/commands/ShipSelectedHandler.js",
+        "js/handlers/commands/MessagesHandler.js",
         "js/Api.js",
         "js/ControlFactory.js",
         "js/worker.js"
