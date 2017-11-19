@@ -19,8 +19,13 @@ class MessagesHandler {
             let s = e.wholeMessage.split("|");
             s.splice(0, 1);
             s = JSON.parse(s.join('|'));
-
             let message = s.message.split('|');
+
+            if("KIK" == message[1]){
+                a.isDisconected=true;
+                this.disconnected();
+            }
+
             if(_events.hasOwnProperty(message[3])){
                 this[_events[message[3]]](message);
             }
@@ -61,6 +66,11 @@ class MessagesHandler {
 
     honor(message){
         let event = new CustomEvent("addHonor",{ detail: { honor: message[4], totalHonor: message[5]} });
+        window.dispatchEvent(event);
+    }
+
+    disconnected(){
+        let event = new CustomEvent("disconnected",{ detail: { disconnected: true } });
         window.dispatchEvent(event);
     }
 

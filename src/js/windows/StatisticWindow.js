@@ -3,13 +3,19 @@ class StatisticWindow {
     createWindow(){
         this.botStatisticWindow = WindowFactory.createWindow({width: 300, text: "Statistic"});
 
-        let startTime = new Date().toLocaleString(navigator.languages[0]);
+        let startTime = new Date();
 
         let options = [
             {
                 name: 'startTime',
                 labelText: 'Start at: ',
-                spanText: startTime,
+                spanText: startTime.toLocaleString(navigator.languages[0]),
+                appendTo: this.botStatisticWindow
+            },
+            {
+                name: 'runtime',
+                labelText: 'Runtime: ',
+                spanText: '00:00:00',
                 appendTo: this.botStatisticWindow
             },
             {
@@ -54,36 +60,31 @@ class StatisticWindow {
             this[option.name] = ControlFactory.info(option);
         });
 
-        $(window).on('addCredits', (e)=>{
-            let collected = parseInt($('span:last-child', this.credits).html());
-            $('span:last-child', this.credits).text(parseInt(e.detail.credits)+collected);
+        let standardListeners = [
+            {event: 'addCredits', el: 'credits', detailEl:'credits'},
+            {event: 'addUridium', el: 'uridium', detailEl:'uridium'},
+            {event: 'addGgEnergy', el: 'energy', detailEl:'energy'},
+            {event: 'addAmmo', el: 'ammo', detailEl:'ammo'},
+            {event: 'addExperience', el: 'experience', detailEl:'experience'},
+            {event: 'addHonor', el: 'honor', detailEl:'honor'},
+        ];
+
+        standardListeners.forEach((item)=>{
+            this.setStandardEventListener(item);
         });
 
-        $(window).on('addUridium', (e)=>{
-            let collected = parseInt($('span:last-child', this.uridium).html());
-            $('span:last-child', this.uridium).text(parseInt(e.detail.uridium)+collected);
-        });
-
-        $(window).on('addGgEnergy', (e)=>{
-            let collected = parseInt($('span:last-child', this.energy).html());
-            $('span:last-child', this.energy).text(parseInt(e.detail.energy)+collected);
-        });
-
-        $(window).on('addAmmo', (e)=>{
-            let collected = parseInt($('span:last-child', this.ammo).html());
-            $('span:last-child', this.ammo).text(parseInt(e.detail.ammo)+collected);
-        });
-
-        $(window).on('addExperience', (e)=>{
-            let collected = parseInt($('span:last-child', this.experience).html());
-            $('span:last-child', this.experience).text(parseInt(e.detail.experience)+collected);
-        });
-
-        $(window).on('addHonor', (e)=>{
-            let collected = parseInt($('span:last-child', this.honor).html());
-            $('span:last-child', this.honor).text(parseInt(e.detail.honor)+collected);
+        $(window).on('logicEnd', ()=>{
+            $('span:last-child', this.runtime).text(TimeHelper.diff(startTime));
         });
         
     }
 
+    setStandardEventListener({event, el, detailEl}){
+        let htmlEl = this[el];
+        $(window).on(event, (e)=>{
+            let el = $('span:last-child', htmlEl);
+            let collected = parseInt(el.html());
+            el.text(parseInt(e.detail[detailEl])+collected);
+        });
+    }
 }
