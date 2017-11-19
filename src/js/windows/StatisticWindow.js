@@ -2,7 +2,7 @@ class StatisticWindow {
 
     createWindow(){
         this.botStatisticWindow = WindowFactory.createWindow({width: 300, text: "Statistic"});
-
+        this.connected=false;
         let startTime = new Date();
 
         let options = [
@@ -73,10 +73,15 @@ class StatisticWindow {
             this.setStandardEventListener(item);
         });
 
-        $(window).on('logicEnd', ()=>{
-            $('span:last-child', this.runtime).text(TimeHelper.diff(startTime));
+        $(window).on('connection', (e)=>{
+            this.connected = e.detail.connected;
         });
-        
+
+        $(window).on('logicEnd', ()=>{
+            if(this.connected) {
+                $('span:last-child', this.runtime).text(TimeHelper.diff(startTime));
+            }
+        });
     }
 
     setStandardEventListener({event, el, detailEl}){

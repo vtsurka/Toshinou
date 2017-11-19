@@ -23,7 +23,12 @@ class MessagesHandler {
 
             if("KIK" == message[1]){
                 a.isDisconected=true;
-                this.disconnected();
+                this.connection({connected: false, status: 'off'});
+            }
+
+            if("A" == message[1]){
+                a.isDisconected=true;
+                this.connection({connected: true, status: 'on'});
             }
 
             if(_events.hasOwnProperty(message[3])){
@@ -69,9 +74,8 @@ class MessagesHandler {
         window.dispatchEvent(event);
     }
 
-    disconnected(){
-        let event = new CustomEvent("disconnected",{ detail: { disconnected: true } });
-        window.dispatchEvent(event);
+    connection({connected, status}){
+        window.dispatchEvent(new CustomEvent("connection",{ detail: { connected, status } }));
     }
 
     get handler() {
