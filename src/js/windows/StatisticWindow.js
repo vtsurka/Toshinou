@@ -54,6 +54,12 @@ class StatisticWindow {
                 spanText: '0',
                 appendTo: this.botStatisticWindow
             },
+            {
+                name: 'speed',
+                labelText: 'Speed: ',
+                spanText: '0.00 uri/min.',
+                appendTo: this.botStatisticWindow
+            },
         ];
 
         options.forEach((option)=>{
@@ -79,7 +85,9 @@ class StatisticWindow {
 
         $(window).on('logicEnd', ()=>{
             if(this.connected) {
-                $('span:last-child', this.runtime).text(TimeHelper.diff(startTime));
+                let uri = parseInt($('span:last-child', this.uridium).html());
+                $('span:last-child', this.runtime).text(  TimeHelper.diff(startTime) );
+				$('span:last-child', this.speed).text( (uri ? ( uri  /  TimeHelper.totatalMinutes(startTime)).toFixed(2):'0.00') + '  uri/min.' );
             }
         });
     }
