@@ -65,8 +65,8 @@ function init() {
   window.attackWindow = new AttackWindow();
   window.attackWindow.createWindow();
 
-  window.collectingWindow = new CollectingWindow();
-  window.collectingWindow.createWindow();
+  window.generalSettingsWindow = new GeneralSettingsWindow();
+  window.generalSettingsWindow.createWindow();
 
   window.autolockWindow = new AutolockWindow();
   window.autolockWindow.createWindow();

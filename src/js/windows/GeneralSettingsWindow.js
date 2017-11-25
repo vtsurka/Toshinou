@@ -2,9 +2,9 @@
 Created by Freshek on 14.10.2017
 */
 
-class CollectingWindow {
+class GeneralSettingsWindow {
   createWindow() {
-    this.botSettingsWindow = WindowFactory.createWindow({width: 300, text: "Collecting"});
+    this.botSettingsWindow = WindowFactory.createWindow({width: 300, text: "General"});
 
     let controls = [
       {
@@ -29,6 +29,14 @@ class CollectingWindow {
         appendTo: this.botSettingsWindow,
         event: function () {
           window.settings.moveRandomly = this.checked;
+        }
+      },
+      {
+        name: 'npcKiller',
+        labelText: 'Kill NPCs',
+        appendTo: this.botSettingsWindow,
+        event: function () {
+          window.settings.killNpcs = this.checked;
         }
       },
       {
