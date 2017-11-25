@@ -40,6 +40,14 @@ class GeneralSettingsWindow {
         }
       },
       {
+        name: 'npcCircle',
+        labelText: 'Circle (Beta)',
+        appendTo: this.botSettingsWindow,
+        event: function () {
+          window.settings.circleNpc = this.checked;
+        }
+      },
+      {
         name: 'collectionSensitivity',
         labelText: 'Collection sensitivity <span> (100%)</span>',
         type: 'range',
