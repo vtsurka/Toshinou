@@ -8,6 +8,7 @@ class Api {
     this.boxes = {};
     this.ships = {};
     this.lastMovement = 0;
+    this.isDisconected = false;
   }
 
   lockShip(ship) {
@@ -97,7 +98,7 @@ class Api {
       var dist = ship.distanceTo(window.hero.position);
 
       if (dist < minDist) {
-        if (window.settings.getNpc(ship.name)) {
+        if (ship.isNpc && window.settings.getNpc(ship.name)) {
           finalShip = ship;
           minDist = dist;
         }
