@@ -106,4 +106,9 @@ class Api {
 
     return {ship: finalShip, distance: minDist};
   }
+
+  markHeroAsDead() {
+    this.heroDied = true;
+    Injector.injectScript("window.heroDied = true;");
+  }
 }
