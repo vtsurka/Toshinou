@@ -106,7 +106,7 @@ function init() {
 }
 
 function logic() {
-  if (api.heroDied)
+  if (api.heroDied && api.isDisconected)
     return;
 
   window.minimap.draw();
@@ -200,4 +200,6 @@ function logic() {
     api.move(x, y);
     window.movementDone = false;
   }
+
+  window.dispatchEvent(new CustomEvent("logicEnd"));
 }

@@ -8,6 +8,7 @@ class Api {
     this.boxes = {};
     this.ships = {};
     this.lastMovement = 0;
+    this.isDisconected = false;
   }
 
   lockShip(ship) {
