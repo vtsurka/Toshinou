@@ -6,7 +6,7 @@ class NpcSettingsTab extends Tab {
   constructor(params ={}) {
     super(params);
 
-    this._content.text('').append('<h4>NPC Killer settings</h4>');
+    this._content.text('').append('<h4>Exclude NPC to attack</h4>');
 
     const controls = [];
 
