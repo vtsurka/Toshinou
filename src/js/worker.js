@@ -48,6 +48,7 @@ $(document).ready(function() {
   hm.registerCommand(GateInitHandler.ID, new GateInitHandler());
   hm.registerCommand(ShipSelectedHandler.ID, new ShipSelectedHandler());
   hm.registerCommand(MessagesHandler.ID, new MessagesHandler());
+  hm.registerCommand(HeroDiedHandler.ID, new HeroDiedHandler());
 
   hm.registerEvent("updateHeroPos", new HeroPositionUpdateEventHandler());
   hm.registerEvent("movementDone", new MovementDoneEventHandler());
@@ -108,7 +109,7 @@ function init() {
 }
 
 function logic() {
-  if (api.heroDied)
+  if (api.heroDied && api.isDisconected)
     return;
 
   window.minimapTab.draw();
@@ -202,4 +203,6 @@ function logic() {
     api.move(x, y);
     window.movementDone = false;
   }
+
+  window.dispatchEvent(new CustomEvent("logicEnd"));
 }

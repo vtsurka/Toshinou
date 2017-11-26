@@ -33,6 +33,7 @@
         "js/tabs/AttackTab.js",
         "js/tabs/AutolockTab.js",
         "js/tabs/NpcSettingsTab.js",
+        "js/utils/TimeHelper.js",
         "js/objects/Movable.js",
         "js/objects/Box.js",
         "js/objects/Hero.js",
@@ -52,6 +53,7 @@
         "js/handlers/commands/GateInitHandler.js",
         "js/handlers/commands/ShipSelectedHandler.js",
         "js/handlers/commands/MessagesHandler.js",
+        "js/handlers/commands/HeroDiedHandler.js",
         "js/Api.js",
         "js/ControlFactory.js",
         "js/worker.js"
