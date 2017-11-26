@@ -65,6 +65,24 @@ class GeneralSettingsWindow {
           $('span:last-child', this.label).text(' (' + this.value + '%)');
         }
       },
+      {
+        name: 'npcCircleRadius',
+        labelText: ' Circle radius <span> (500px)</span>',
+        type: 'range',
+        appendTo: this.botSettingsWindow,
+        labelBefore: true,
+        attrs: {
+          min: 1,
+          max: 500,
+          step: 1,
+          value: 500,
+        }
+        ,
+        event: function (ev) {
+          window.settings.npcCircleRadius = this.value;
+          $('span:last-child', this.label).text(' (' + this.value + 'px)');
+        }
+      },
     ];
 
     controls.forEach((control)=>{
