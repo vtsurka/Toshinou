@@ -2,16 +2,20 @@
     box-sizing: border-box;
 }
 
-.panel {
-    user-select: none;
+.window {
     color: #e8e1bf;
-    position: fixed !important;
+    width: 300px;
     background-color: transparent;
+    position: absolute;
+    left: 400px;
+    top: 50px;
     border: 1px solid rgb(40, 116, 144);
 }
 
-.panel .titlebar {
+.window .header {
     width: 100%;
+    height: 40px;
+    background-color: rgb(22, 38, 47);
     top: 0px; left: 0px;
     box-sizing: border-box;
     margin: 0px;
@@ -21,10 +25,7 @@
     border-bottom: 1px solid rgb(40, 116, 144);
 }
 
-.panel .minimize-btn {
-    width:34px;
-    height:34px;
-    background-size: 34px 34px;
+.window .minimize-btn {
     padding: 10px;
     margin: 0px;
     cursor: pointer;
@@ -34,19 +35,13 @@
     height: 100%;
 }
 
-.panel .content {
+.window .content {
     width: 100%;
+    background-color: rgba(22, 38, 47, 0.78);
     overflow-y: auto;
     padding: 5px;
 }
 
-.panel .content canvas {
+.window .content canvas {
     max-width: 100%;
-}
-
-.tab {
-    cursor:pointer;
-    border: 1px solid rgb(40, 116, 144);
-    background-color:green;
-    display:inline-block;
 }

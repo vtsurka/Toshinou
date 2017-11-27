@@ -1,25 +1,26 @@
 /*
-Created by HaselLoyance on 26.11.2017
+Created by Freshek on 11.11.2017
 */
 
-class NpcSettingsTab extends Tab {
-  constructor(params ={}) {
-    super(params);
+class NpcSettingsWindow {
+  createWindow() {
+    this.npcSettingsWindow = WindowFactory.createWindow({ width: 300, maxHeight: 100, text: "Exclude NPC to attack" });
 
-    this._content.text('').append('<h4>Exclude NPC to attack</h4>');
-
-    const controls = [];
+    let controls = [];
 
     this.knownNpcList.forEach((n, i) => {
+
       controls.push({
         name: `npc${i}`,
         labelText: n,
-        appendTo: this._content,
+        appendTo: this.npcSettingsWindow,
         event: function () {
           window.settings.setNpc(n, this.checked);
-        },
+        }
       });
+
     });
+
 
     controls.forEach((control)=>{
       this[control.name] = ControlFactory.createControl(control);

@@ -1,39 +1,43 @@
 /*
-Created by HaselLoyance on 26.11.2017
+Created by Freshek on 07.10.2017
 */
 
-class MinimapTab extends Tab {
-  constructor(api, params = {}) {
-    super(params);
-    this._api = api;
-    this._content.text('').append('<h4>Minimap</h4>');
+class Minimap {
+  constructor(a) {
+    this._api = a;
+  }
 
-    this.canvas = jQuery('<canvas/>', {
-      width: jQuery('.panel').width(),
+  createWindow() {
+    this.minimap = WindowFactory.createWindow({width: 312, text: "Minimap"});
+
+    this.canvas = jQuery("<canvas/>", {
+      width: 300,
       height: 180,
     });
 
-    this.ctx = this.canvas.get(0).getContext('2d');
-    this._content.append(this.canvas);
+    this.ctx = this.canvas.get(0).getContext("2d");
 
-    this.canvas.click((e) => {
-      const pos = this._content.position();
-      const x = e.clientX - pos.left;
-      const y = e.clientY - pos.top - 40;
+    this.canvas.appendTo(this.minimap);
+
+    var self = this;
+
+    this.canvas.click(function(e) {
+      var pos = self.minimap.position();
+      var x = e.clientX - pos.left;
+      var y = e.clientY - pos.top - 40;
 
       Injector.injectScript('document.getElementById("preloader").moveShip(' + x * 70 + ',' + y * 90 + ');');
     });
   }
 
   draw() {
-    const ct = this.ctx;
+    var ct = this.ctx;
 
     ct.clearRect(0, 0, this.canvas.width() + 40, this.canvas.height() + 40);
 
     ct.fillStyle = 'green';
     ct.fillRect(window.hero.position.x / 70, window.hero.position.y / 90, 4, 4);
 
-    // TODO: someone should make this look nicer
     for (var property in this._api.boxes) {
       var box = this._api.boxes[property];
 
@@ -65,12 +69,10 @@ class MinimapTab extends Tab {
       this._fillCircle(ct, pos.x / 70, pos.y / 90, 2);
     }
 
-
-    ct.strokeStyle = 'white';
+    ct.strokeStyle = "white";
     ct.lineWidth = 1;
-
     this._api.gates.forEach(gate => {
-      const pos = gate.position;
+      var pos = gate.position;
       this._strokeCircle(ct, pos.x / 70, pos.y / 90, 4);
     });
   }
