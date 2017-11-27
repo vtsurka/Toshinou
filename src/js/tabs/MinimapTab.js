@@ -9,7 +9,7 @@ class MinimapTab extends Tab {
     this._content.text('').append('<h4>Minimap</h4>');
 
     this.canvas = jQuery('<canvas/>', {
-      width: 300,
+      width: jQuery('.panel').width(),
       height: 180,
     });
 
