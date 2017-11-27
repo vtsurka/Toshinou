@@ -7,8 +7,8 @@ function saveOptions(e) {
   var elements = {
     headerColor: $("#headerColor").val(),
     headerOpacity: $("#headerOpacity").val(),
-    panelColor: $("#panelColor").val(),
-    panelOpacity: $("#panelOpacity").val(),
+    windowColor: $("#windowColor").val(),
+    windowOpacity: $("#windowOpacity").val(),
     timerTick: $("#timerTick").val(),
     showRuntime: $("#showRuntime").prop('checked'),
   };
@@ -17,7 +17,7 @@ function saveOptions(e) {
 }
 
 function restore() {
-  var items = ["headerColor", "headerOpacity", "panelColor", "panelOpacity", "timerTick", "showRuntime"];
+  var items = ["headerColor", "headerOpacity", "windowColor", "windowOpacity", "timerTick", "showRuntime"];
 
   var onGet = items => {
 
@@ -27,10 +27,10 @@ function restore() {
       $("#headerColor").val(items.headerColor);
     if (items.headerOpacity)
       $("#headerOpacity").val(items.headerOpacity);
-    if (items.panelColor)
-      $("#panelColor").val(items.panelColor);
-    if (items.panelOpacity)
-      $("#panelOpacity").val(items.panelOpacity);
+    if (items.windowColor)
+      $("#windowColor").val(items.windowColor);
+    if (items.windowOpacity)
+      $("#windowOpacity").val(items.windowOpacity);
     if (items.timerTick)
       $("#timerTick").val(items.timerTick);
     if (items.showRuntime)

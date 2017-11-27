@@ -12,9 +12,9 @@ class ShipAttackHandler {
       var shipAttackCmd = JSON.parse(e.detail);
       // TODO: Make this cleaner – create a Ship object
       if (shipAttackCmd[Variables.attackerId] == window.userId) { //attacker id
-        window.attackTab.hp(shipAttackCmd[Variables.attackHp]);
-        window.attackTab.shd(shipAttackCmd[Variables.attackShd]);
-        window.attackTab.targetName(a.ships[shipAttackCmd[Variables.attackedId]].name);
+        window.attackWindow.hp(shipAttackCmd[Variables.attackHp]);
+        window.attackWindow.shd(shipAttackCmd[Variables.attackShd]);
+        window.attackWindow.targetName(a.ships[shipAttackCmd[Variables.attackedId]].name);
       }
     }
   }

@@ -8,8 +8,8 @@ class GlobalSettings {
     chrome.storage.local.get({
       headerColor: "#191919",
       headerOpacity: "0.9",
-      panelColor: "#191919",
-      panelOpacity: "0.8",
+      windowColor: "#191919",
+      windowOpacity: "0.8",
       timerTick: 300
     }, items => {
       self._settings = items;
@@ -24,12 +24,12 @@ class GlobalSettings {
     return this._settings.headerOpacity;
   }
 
-  get panelColor() {
-    return this._settings.panelColor;
+  get windowColor() {
+    return this._settings.windowColor;
   }
 
-  get panelOpacity() {
-    return this._settings.panelOpacity;
+  get windowOpacity() {
+    return this._settings.windowOpacity;
   }
 
   get timerTick() {

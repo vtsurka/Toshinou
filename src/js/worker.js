@@ -60,25 +60,23 @@ function init() {
   if (window.initialized)
     return;
 
-  window.minimapTab = new MinimapTab(api);
-  window.attackTab = new AttackTab();
-  window.generalSettingsTab = new GeneralSettingsTab();
-  window.autolockTab = new AutolockTab();
-  window.npcSettingsTab = new NpcSettingsTab({ maxHeight: 400 });
-  window.statisticsTab = new StatisticsTab();
+  window.minimap = new Minimap(api);
+  window.minimap.createWindow();
 
-  window.PanelTest = new Panel({
-    width: 350,
-    tabs: [
-      window.minimapTab,
-      window.attackTab,
-      window.generalSettingsTab,
-      window.autolockTab,
-      window.npcSettingsTab,
-      window.statisticsTab,
-    ],
-  });
+  window.attackWindow = new AttackWindow();
+  window.attackWindow.createWindow();
 
+  window.generalSettingsWindow = new GeneralSettingsWindow();
+  window.generalSettingsWindow.createWindow();
+
+  window.autolockWindow = new AutolockWindow();
+  window.autolockWindow.createWindow();
+
+  window.npcSettingsWindow = new NpcSettingsWindow();
+  window.npcSettingsWindow.createWindow();
+
+  window.statisticWindow = new StatisticWindow();
+  window.statisticWindow.createWindow();
 
   Injector.injectScriptFromResource("res/injectables/HeroPositionUpdater.js");
 
@@ -112,7 +110,7 @@ function logic() {
   if (api.heroDied && api.isDisconected)
     return;
 
-  window.minimapTab.draw();
+  window.minimap.draw();
 
   if (api.targetBoxHash == null && api.targetShip == null) {
       var box = api.findNearestBox();

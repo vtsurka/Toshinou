@@ -25,15 +25,14 @@
         "js/utils/WebClient.js",
         "js/utils/BoxType.js",
         "js/utils/ColorConverter.js",
-        "js/panelComponents/Panel.js",
-        "js/panelComponents/Tab.js",
-        "js/tabs/GeneralSettingsTab.js",
-        "js/tabs/MinimapTab.js",
-        "js/tabs/StatisticsTab.js",
-        "js/tabs/AttackTab.js",
-        "js/tabs/AutolockTab.js",
-        "js/tabs/NpcSettingsTab.js",
         "js/utils/TimeHelper.js",
+        "js/WindowFactory.js",
+        "js/windows/Minimap.js",
+        "js/windows/AttackWindow.js",
+        "js/windows/GeneralSettingsWindow.js",
+        "js/windows/AutolockWindow.js",
+        "js/windows/NpcSettingsWindow.js",
+        "js/windows/StatisticWindow.js",
         "js/objects/Movable.js",
         "js/objects/Box.js",
         "js/objects/Hero.js",
@@ -66,8 +65,7 @@
   ],
 
   "web_accessible_resources": [
-    "res/injectables/*",
-    "icons/*"
+    "res/injectables/*"
   ],
 
   "options_ui": {
