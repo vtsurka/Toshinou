@@ -64,7 +64,7 @@ function init() {
   window.attackTab = new AttackTab();
   window.generalSettingsTab = new GeneralSettingsTab();
   window.autolockTab = new AutolockTab();
-  window.npcSettingsTab = new NpcSettingsTab({ maxHeight: 400p });
+  window.npcSettingsTab = new NpcSettingsTab({ maxHeight: 400 });
   window.statisticsTab = new StatisticsTab();
 
   window.PanelTest = new Panel({
