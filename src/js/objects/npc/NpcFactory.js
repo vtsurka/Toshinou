@@ -2,9 +2,8 @@ const NpcFactory  = {
     create: function(ship) {
         if(this.list.hasOwnProperty(ship.name))
             return new Npc(ship,this.list[ship.name]);
-        return new Npc({hp: this.unknownNpc.hp, shield: this.unknownNpc.shield});
-    },
-    unknownNpc: {hp: 0,  shield: 0},
+        return new Npc(ship, {hp: 0, shield: 0});
+    },    
     list: {
             "-=[ Streuner ]=-": {hp: 800, shield: 400},
             "-=[ Aider Streuner ]=-": {hp: 1500, shield: 1000},
@@ -19,8 +18,8 @@ const NpcFactory  = {
             "-=[ Kristallin ]=-": {hp: 50000, shield: 40000},
             "-=[ Kristallon ]=-": {hp: 400000, shield: 300000},
             "-=[ StreuneR ]=-": {hp: 30000, shield: 30000},
-            "-=[ Protegit ]=-": {},
-            "-=[ Cubikon ]=-": {},
+            "-=[ Protegit ]=-": {hp: 0, shield: 0},
+            "-=[ Cubikon ]=-": {hp: 0, shield: 0},
             "..::{ Boss Streuner }::..": {hp: 3200, shield: 1600},
             "..::{ Boss Lordakia }::..": {hp: 8000, shield: 8000},
             "..::{ Boss Mordon }::..": {hp: 80000, shield: 40000},
@@ -32,20 +31,20 @@ const NpcFactory  = {
             "..::{ Boss Kristallin }::..": {hp: 200000, shield: 160000},
             "..::{ Boss Kristallon }::..": {hp: 1600000, shield: 1200000},
             "..::{ Boss StreuneR }::..": {hp: 80000, shield: 60000},
-            "( UberStreuner )": {},
-            "( UberLordakia )": {},
-            "( UberMordon )": {},
-            "( UberSaimon )": {},
-            "( UberDevolarium )": {},
-            "( UberSibelonit )": {},
-            "( UberSibelon )": {},
-            "( UberLordakium )": {},
-            "( UberKristallin )": {},
-            "( UberKristallon )": {},
-            "( UberStreuneR )": {},
-            "-=[ Blighted Kristallon ]=-": {},
-            "-=[ Plagued Kristallin ]=-": {},
-            "-=[ Plague Rocket ]=-": {},
-            "<=< Blighted Gygerthrall >=>" : {}
+            "( UberStreuner )": {hp: 0, shield: 0},
+            "( UberLordakia )": {hp: 0, shield: 0},
+            "( UberMordon )": {hp: 0, shield: 0},
+            "( UberSaimon )": {hp: 0, shield: 0},
+            "( UberDevolarium )": {hp: 0, shield: 0},
+            "( UberSibelonit )": {hp: 0, shield: 0},
+            "( UberSibelon )": {hp: 0, shield: 0},
+            "( UberLordakium )": {hp: 0, shield: 0},
+            "( UberKristallin )": {hp: 0, shield: 0},
+            "( UberKristallon )": {hp: 0, shield: 0},
+            "( UberStreuneR )": {hp: 0, shield: 0},
+            "-=[ Blighted Kristallon ]=-": {hp: 0, shield: 0},
+            "-=[ Plagued Kristallin ]=-": {hp: 0, shield: 0},
+            "-=[ Plague Rocket ]=-": {hp: 0, shield: 0},
+            "<=< Blighted Gygerthrall >=>" : {hp: 0, shield: 0}
     }
 }

@@ -4,6 +4,7 @@
  */
 class Npc {
     constructor(ship, stats) {
+        console.log(stats);
         this.ship = ship;
         this.maps = [];       
         this.fullHp = stats.hp;
@@ -17,17 +18,17 @@ class Npc {
         this.speed = 0;
     }
 
-    canBeAttacked() {
+    canBeAttacked() {        
         return this.shield == this.fullShield || (this.shield+1) == this.fullShield; //for some npc shield api data store shield +1
     }
 
     updateStats(hp,shield, fullHp, fullShield) {
         this.hp = hp;
         this.shield = shield;
-
+        console.log(fullHp, fullShield, this);
         if (this.fullHp == 0 && this.fullShield == 0) {
-            this.fullHp = fullHp;
-            this.fullShield == fullShield;
+            this.fullHp = fullHp;            
+            this.fullShield = fullShield;
         }
     }
 

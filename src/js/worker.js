@@ -158,7 +158,7 @@ function logic() {
   }
 
   //HACK: npc stucks fallback
-  if (api.targetShip && $.now() - api.lockTime > 5000 && !api.attacking) {
+  if ((api.targetShip && $.now() - api.lockTime > 5000 && !api.attacking)) {
     api.targetShip = null;
     api.attacking = false;
     api.triedToLock = false;
