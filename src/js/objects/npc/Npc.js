@@ -25,7 +25,7 @@ class Npc {
     updateStats(hp,shield, fullHp, fullShield) {
         this.hp = hp;
         this.shield = shield;
-        console.log(fullHp, fullShield, this);
+        
         if (this.fullHp == 0 && this.fullShield == 0) {
             this.fullHp = fullHp;            
             this.fullShield = fullShield;

@@ -27,7 +27,6 @@ class ShipSelectedHandler {
             a.npcs[parsedJson.userId] = npc;
             a.lockedShip = npc.ship;            
           } else {            
-            console.log('cant attacked');
             a.targetShip = null;
             a.attacking = false;
             a.triedToLock = false;
