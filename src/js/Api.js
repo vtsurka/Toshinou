@@ -7,6 +7,7 @@ class Api {
     this.gates = [];
     this.boxes = {};
     this.ships = {};
+    this.npcs = {};
     this.lastMovement = 0;
     this.isDisconected = false;
   }
