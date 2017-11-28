@@ -3,8 +3,7 @@
  * In feature do extends of Ship because App will be contains two collection of heroes and npcs; 
  */
 class Npc {
-    constructor(ship, stats) {
-        console.log(stats);
+    constructor(ship, stats) {        
         this.ship = ship;
         this.maps = [];       
         this.fullHp = stats.hp;
