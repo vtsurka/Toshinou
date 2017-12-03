@@ -38,6 +38,8 @@
         "js/objects/Hero.js",
         "js/objects/Ship.js",
         "js/objects/Gate.js",
+        "js/objects/npc/Npc.js",
+        "js/objects/npc/NpcFactory.js",
         "js/handlers/HandlersManager.js",
         "js/handlers/events/MovementDoneEventHandler.js",
         "js/handlers/events/HeroPositionUpdateEventHandler.js",
